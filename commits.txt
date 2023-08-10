@@ -12,6 +12,27 @@ Start Build Threads
 
 ======================================================================================
 
-- Add i18n
+Create Layout [ TopBar, BottomBar, LeftSideBar, RightSideBar ]
+
+- Add assets to public folder
+- Fix console error come from nested layouts
+- Create constants folder
+- Create sideBarLinks constant
+- Create TopBar
+- Create LeftSideBar
+- Create BottomBar
+- Create RightSideBar
+
+======================================================================================
+
+- Create SidebarLinks component to avoid repeating code
+- Create useIsPathMatch hook
+- Move layout styles to there components
+
+- home page not protected
+
+- Add localization
 - Add eslint and prettier rules and scripts
 - Enhance seo use coder one ceo video
+- Add constants for app name to use seo
+- Add constants for app routes
