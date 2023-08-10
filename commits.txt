@@ -1,0 +1,17 @@
+======================================================================================
+
+Start Build Threads
+
+- Add global styles
+- Config Tailwind
+- Install and Setup Clerk
+- Create Auth
+	- Create Signin Page
+	- Create Signup Page
+- Create commits file to track progress and changes
+
+======================================================================================
+
+- Add i18n
+- Add eslint and prettier rules and scripts
+- Enhance seo use coder one ceo video
