@@ -1,1 +1,1 @@
-export { sideBarLinks } from "./sidebarLinks.constant";
+export { ROUTES } from "./routes.constant";

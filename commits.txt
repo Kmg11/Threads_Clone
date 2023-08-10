@@ -25,12 +25,20 @@ Create Layout [ TopBar, BottomBar, LeftSideBar, RightSideBar ]
 
 ======================================================================================
 
-- Create SidebarLinks component to avoid repeating code
-- Create useIsPathMatch hook
+Enhance Structure of Layout components | Create ROUTES constant
+
+- Create SidebarLinksList component to avoid repeating code
+- Replace sidebar links in LeftSideBar and BottomBar with SidebarLinksList component
+- Move sidebarLinks constant to SidebarLinksList component
+- Create LogoutButton component
+- Create ROUTES constant
+- Replace static routes with ROUTES constant
+
+======================================================================================
+
 - Move layout styles to there components
 
 - home page not protected
-
 - Add localization
 - Add eslint and prettier rules and scripts
 - Enhance seo use coder one ceo video
