@@ -36,6 +36,25 @@ Enhance Structure of Layout components | Create ROUTES constant
 
 ======================================================================================
 
+Create Onboarding Page | Create AccountProfileForm component
+
+- Create formatDateString, formatThreadCount and isBase64Image utils
+- Setup uploadthing to upload images
+- Create onboarding page
+- Create AccountProfileForm component
+	- Create ProfilePhoto component
+	- Create AccountProfileFormField component
+	- Create useAccountProfileForm hook
+
+======================================================================================
+
+- Rename userValidation to AccountProfileFormSchema
+- Create schemas folder
+- Show form errors
+- Organize shad cn files and theme into folders and collect form components into folder and name must be capitalize
+- Add messages to userValidation
+- Create UserType
+- Enhance AccountProfileForm component
 - Move layout styles to there components
 
 - home page not protected
