@@ -34,7 +34,7 @@ export const sideBarLinks: SideBarLinksType[] = [
 	},
 	{
 		imgURL: "/assets/user.svg",
-		route: ROUTES.PROFILE,
+		route: ROUTES.PROFILE.BASE,
 		label: "Profile",
 	},
 ];

@@ -48,6 +48,26 @@ Create Onboarding Page | Create AccountProfileForm component
 
 ======================================================================================
 
+Create UserModel | Create updateUserAction
+
+- Create server folder to collect server files
+- Create connectToDB function
+- Create userSchema and UserModel
+- Create ModelsNames enum
+- Create updateUserAction
+- Handle update user after submit AccountProfileForm
+
+======================================================================================
+
+- if user do not change image from onboarding database will not contain image
+- info wrong in onboarding page
+- Create UserType
+- console error in when onboarding page submit
+- Server Enhancements
+	- Add types to UserModel
+	- Add email and timestamp to userSchema
+	- Remove _id from userSchema
+
 - Rename userValidation to AccountProfileFormSchema
 - Create schemas folder
 - Show form errors

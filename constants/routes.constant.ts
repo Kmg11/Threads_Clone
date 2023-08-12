@@ -2,6 +2,7 @@ export const ROUTES = {
 	AUTH: {
 		SIGNIN: "/sign-in",
 		SIGNUP: "/sign-up",
+		ONBOARDING: "/onboarding",
 	},
 
 	HOME: "/",
@@ -9,5 +10,9 @@ export const ROUTES = {
 	ACTIVITY: "/activity",
 	CREATE_THREAD: "/create-thread",
 	COMMUNITIES: "/communities",
-	PROFILE: "/profile",
+
+	PROFILE: {
+		BASE: "/profile",
+		EDIT: "/profile/edit",
+	},
 };

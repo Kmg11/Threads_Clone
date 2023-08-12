@@ -11,7 +11,7 @@ export default async function Onboarding() {
 		id: user.id,
 		objectId: userInfo.objectId,
 		username: userInfo.username || user.username,
-		name: userInfo.name || user.firstName,
+		name: userInfo.name || `${user.firstName} ${user.lastName}`,
 		bio: userInfo.bio || "",
 		image: userInfo.image || user.imageUrl,
 	};
