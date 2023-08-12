@@ -1,10 +1,11 @@
-import { UserValidationType, isBase64Image, userValidation } from "@/lib";
+import { isBase64Image } from "@/lib";
+import { UserSchemaType, UserSchema } from "./accountProfile.schema";
 import { useUploadThing } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AccountProfileFormProps } from "./AccountProfileForm";
-import { updateUserAction } from "@/server/actions";
+import { updateUserAction } from "@/server/actions/userActions/updateUser.action";
 import { usePathname, useRouter } from "next/navigation";
 import { ROUTES } from "@/constants";
 
@@ -19,8 +20,8 @@ export const useAccountProfileForm = ({ user }: UseAccountProfileFormProps) => {
 	const [files, setFiles] = useState<File[]>([]);
 	const { startUpload } = useUploadThing("media");
 
-	const form = useForm({
-		resolver: zodResolver(userValidation),
+	const form = useForm<UserSchemaType>({
+		resolver: zodResolver(UserSchema),
 		defaultValues: {
 			profile_photo: user.image,
 			name: user.name,
@@ -29,7 +30,7 @@ export const useAccountProfileForm = ({ user }: UseAccountProfileFormProps) => {
 		},
 	});
 
-	const onSubmit = async (values: UserValidationType) => {
+	const onSubmit = async (values: UserSchemaType) => {
 		if (isBase64Image(values.profile_photo)) {
 			const imgRes = await startUpload(files);
 

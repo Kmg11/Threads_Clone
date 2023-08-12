@@ -4,6 +4,7 @@ import {
 	FormField,
 	FormItem,
 	FormLabel,
+	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { UserValidationType } from "@/lib";
@@ -77,6 +78,8 @@ export const ProfilePhoto = ({ control, setFiles }: ProfilePhotoProps) => {
 							onChange={(e) => handleImage(e, field.onChange)}
 						/>
 					</FormControl>
+
+					<FormMessage />
 				</FormItem>
 			)}
 		/>

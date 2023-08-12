@@ -59,6 +59,26 @@ Create UserModel | Create updateUserAction
 
 ======================================================================================
 
+Create create thread page | Create PostThreadForm component | Create createThreadAction | Create ThreadModel
+
+- Create getUserAction
+- Create PostThreadFrom component
+- Create usePostThreadForm hook
+- Create postThreadSchema
+- Create ThreadModel and threadSchema
+- Create createThreadAction
+- Enhance userValidation schema
+- Move userValidation from lob/validations to AccountProfileForm/validations
+- Rename userValidation to UserSchema
+
+======================================================================================
+
+- Terminal error with create thread page
+- Create utils folder and split utils into small files
+- Create getClerkUser function to use in pages
+- Handle errors in actions
+- Add type to getUserAction
+
 - if user do not change image from onboarding database will not contain image
 - info wrong in onboarding page
 - Create UserType
@@ -72,9 +92,7 @@ Create UserModel | Create updateUserAction
 - Create schemas folder
 - Show form errors
 - Organize shad cn files and theme into folders and collect form components into folder and name must be capitalize
-- Add messages to userValidation
 - Create UserType
-- Enhance AccountProfileForm component
 - Move layout styles to there components
 
 - home page not protected
