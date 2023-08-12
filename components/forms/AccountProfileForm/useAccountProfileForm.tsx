@@ -25,7 +25,7 @@ export const useAccountProfileForm = ({ user }: UseAccountProfileFormProps) => {
 		defaultValues: {
 			profile_photo: user.image,
 			name: user.name,
-			username: user.username,
+			username: user.username || "",
 			bio: user.bio,
 		},
 	});

@@ -1,8 +1,19 @@
 import { ModelsNames } from "@/server";
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
-	id: { type: String, required: true, unique: true },
+interface UserDocumentType extends mongoose.Document {
+	id: string;
+	username: string;
+	name: string;
+	image: string;
+	bio: string;
+	onboarded: boolean;
+	threads: string[];
+	communities: string[];
+}
+
+const userSchema = new mongoose.Schema<UserDocumentType>({
+	id: { type: String, required: true, unique: true }, // * This is the clerk id
 	username: { type: String, required: true, unique: true },
 	name: { type: String, required: true },
 	image: { type: String },
@@ -24,5 +35,14 @@ const userSchema = new mongoose.Schema({
 	],
 });
 
-export const UserModel =
-	mongoose.models.User || mongoose.model(ModelsNames.User, userSchema);
+export const UserModel: mongoose.Model<
+	UserDocumentType,
+	{},
+	{},
+	{},
+	mongoose.Document<unknown, {}, UserDocumentType> &
+		UserDocumentType & { _id: mongoose.Types.ObjectId },
+	any
+> =
+	mongoose.models.User ||
+	mongoose.model<UserDocumentType>(ModelsNames.User, userSchema);

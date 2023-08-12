@@ -7,13 +7,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { UserValidationType } from "@/lib";
 import React from "react";
 import { Control, FieldName } from "react-hook-form";
+import { UserSchemaType } from "../accountProfile.schema";
 
 interface AccountProfileFormFieldProps {
-	control: Control<UserValidationType>;
-	name: FieldName<UserValidationType>;
+	control: Control<UserSchemaType>;
+	name: FieldName<UserSchemaType>;
 	label: string;
 	variant: "text" | "textarea";
 }

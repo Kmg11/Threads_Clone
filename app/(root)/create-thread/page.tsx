@@ -9,7 +9,7 @@ export default async function CreateThreadPage() {
 	if (!user) return null;
 
 	const userInfo = await getUserAction(user.id);
-	if (!userInfo.onboarded) return redirect(ROUTES.AUTH.ONBOARDING);
+	if (!userInfo?.onboarded) return redirect(ROUTES.AUTH.ONBOARDING);
 
 	return (
 		<>

@@ -9,15 +9,15 @@ export default async function Onboarding() {
 	if (!user) return null;
 
 	const userInfo = await getUserAction(user.id);
-	if (userInfo.onboarded) return redirect(ROUTES.HOME);
+	if (userInfo?.onboarded) return redirect(ROUTES.HOME);
 
 	const userData = {
 		id: user.id,
-		objectId: userInfo.objectId,
-		username: userInfo.username || user.username,
-		name: userInfo.name || `${user.firstName} ${user.lastName}`,
-		bio: userInfo.bio || "",
-		image: userInfo.image || user.imageUrl,
+		objectId: userInfo?._id,
+		username: userInfo?.username || user.username,
+		name: userInfo?.name || `${user.firstName} ${user.lastName}`,
+		bio: userInfo?.bio || "",
+		image: userInfo?.image || user.imageUrl,
 	};
 
 	return (

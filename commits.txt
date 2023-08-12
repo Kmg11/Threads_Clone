@@ -73,26 +73,22 @@ Create create thread page | Create PostThreadForm component | Create createThrea
 
 ======================================================================================
 
+Enhancements
+
+- Enhance UserModel type
+- Fix typescript errors
+
+======================================================================================
+
+- Add types to ThreadModel
+
 - Terminal error with create thread page
 - Create utils folder and split utils into small files
 - Create getClerkUser function to use in pages
 - Handle errors in actions
-- Add type to getUserAction
 
-- if user do not change image from onboarding database will not contain image
-- info wrong in onboarding page
-- Create UserType
 - console error in when onboarding page submit
-- Server Enhancements
-	- Add types to UserModel
-	- Add email and timestamp to userSchema
-	- Remove _id from userSchema
-
-- Rename userValidation to AccountProfileFormSchema
-- Create schemas folder
-- Show form errors
 - Organize shad cn files and theme into folders and collect form components into folder and name must be capitalize
-- Create UserType
 - Move layout styles to there components
 
 - home page not protected

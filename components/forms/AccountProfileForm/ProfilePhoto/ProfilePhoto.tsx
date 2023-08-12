@@ -7,12 +7,12 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { UserValidationType } from "@/lib";
 import Image from "next/image";
 import { Control, set } from "react-hook-form";
+import { UserSchemaType } from "../accountProfile.schema";
 
 interface ProfilePhotoProps {
-	control: Control<UserValidationType>;
+	control: Control<UserSchemaType>;
 	setFiles: React.Dispatch<React.SetStateAction<File[]>>;
 }
 
