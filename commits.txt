@@ -80,16 +80,29 @@ Enhancements
 
 ======================================================================================
 
-- Add types to ThreadModel
+Create ThreadCard component | Create getThreadsAction
 
-- Terminal error with create thread page
-- Create utils folder and split utils into small files
-- Create getClerkUser function to use in pages
-- Handle errors in actions
+- Remove user model types
+- Create getThreadsAction
+- Create cards components folder
+- Create ThreadCard component
+- Add USER_PROFILE and THREAD to ROUTES constant
+
+======================================================================================
+
+- ThreadCard
+	- Handle like, rePost, share functionality
+	- Enhance user image style
+- Global
+	- Remove collector index file
+	- Create utils folder and split utils into small files
+	- Create getClerkUser function to use in pages
+	- Handle errors in actions
+	- Terminal error with create thread page
+	- Move layout styles to there components
+	- Organize shad cn files and theme into folders and collect form components into folder and name must be capitalize
 
 - console error in when onboarding page submit
-- Organize shad cn files and theme into folders and collect form components into folder and name must be capitalize
-- Move layout styles to there components
 
 - home page not protected
 - Add localization
