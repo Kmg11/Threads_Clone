@@ -1,11 +1,12 @@
 "use server";
 
 import { ThreadModel, UserModel, connectToDB } from "@/server";
+import { UserType } from "@/types";
 import { revalidatePath } from "next/cache";
 
 interface CreateThreadActionParams {
 	text: string;
-	author: string;
+	author: UserType["_id"];
 	communityId: string | null;
 	path: string;
 }

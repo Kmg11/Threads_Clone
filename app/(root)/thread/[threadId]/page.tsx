@@ -44,9 +44,27 @@ export default async function ThreadPage({ params }: ThreadPageProps) {
 			<div className="my-7">
 				<CreateCommentForm
 					threadId={thread._id}
-					currentUserImg={user.imageUrl}
+					currentUserImg={userInfo.image || ""}
 					currentUserId={userInfo._id}
 				/>
+			</div>
+
+			<div className="mt-10">
+				{thread.comments.map((comment) => (
+					<ThreadCard
+						key={comment._id.toString()}
+						currentUserId={user?.id}
+						_id={comment._id}
+						text={comment.text}
+						author={comment.author}
+						community={comment.community}
+						parentId={comment.parentId}
+						createdAt={comment.createdAt}
+						updatedAt={comment.updatedAt}
+						comments={comment.comments}
+						isComment={true}
+					/>
+				))}
 			</div>
 		</section>
 	);

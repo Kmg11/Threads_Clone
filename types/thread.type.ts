@@ -1,11 +1,5 @@
 import mongoose from "mongoose";
-
-interface AuthorType {
-	_id: mongoose.Types.ObjectId;
-	image: string;
-	name: string;
-	username: string;
-}
+import { AuthorType } from ".";
 
 export interface ThreadDocumentType {
 	_id: mongoose.Types.ObjectId;

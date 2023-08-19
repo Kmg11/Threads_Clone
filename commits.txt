@@ -102,14 +102,22 @@ Create Thread Page | Create CreateCommentForm component
 
 ======================================================================================
 
+Create comments section | Create user types
+
+- Create comments section at thread page
+- Handle isComment style in ThreadCard
+- Create user.type.ts file
+- Create UserDocumentType, UserType
+- Move AuthorType to user.type.ts file
+
+======================================================================================
+
 - Image stored at uploadthing quality is very bad
 - ThreadCard
 	- Handle like, rePost, share functionality
 	- Enhance user image style
 - Check onboarded in home page
 - Global
-	- Remove collector index file
-	- Create utils folder and split utils into small files
 	- Create getClerkUser function to use in pages
 	- Handle errors in actions
 	- Terminal error with create thread page

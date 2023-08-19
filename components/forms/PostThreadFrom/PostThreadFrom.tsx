@@ -12,9 +12,10 @@ import React from "react";
 import { usePostThreadForm } from "./usePostThreadForm";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { Types } from "mongoose";
 
 export interface PostThreadFromProps {
-	userId: string;
+	userId: Types.ObjectId;
 }
 
 export const PostThreadFrom = ({ userId }: PostThreadFromProps) => {

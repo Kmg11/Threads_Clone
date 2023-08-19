@@ -13,7 +13,7 @@ export default async function Onboarding() {
 
 	const userData = {
 		id: user.id,
-		objectId: userInfo?._id,
+		objectId: JSON.stringify(userInfo?._id),
 		username: userInfo?.username || user.username,
 		name: userInfo?.name || `${user.firstName} ${user.lastName}`,
 		bio: userInfo?.bio || "",
