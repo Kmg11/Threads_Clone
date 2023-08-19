@@ -90,9 +90,23 @@ Create ThreadCard component | Create getThreadsAction
 
 ======================================================================================
 
+Create Thread Page | Create CreateCommentForm component
+
+- Create thread page
+- Create getThreadAction
+- Handle types for getThreadsAction and getThreadAction
+- Create AuthorType, ThreadDocumentType and ThreadType
+- Create CreateCommentForm component
+- Create useCreateCommentForm hook
+- Create addCommentToThreadAction
+
+======================================================================================
+
+- Image stored at uploadthing quality is very bad
 - ThreadCard
 	- Handle like, rePost, share functionality
 	- Enhance user image style
+- Check onboarded in home page
 - Global
 	- Remove collector index file
 	- Create utils folder and split utils into small files

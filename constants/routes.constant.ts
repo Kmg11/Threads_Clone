@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export const ROUTES = {
 	AUTH: {
 		SIGNIN: "/sign-in",
@@ -10,11 +12,11 @@ export const ROUTES = {
 	ACTIVITY: "/activity",
 	CREATE_THREAD: "/create-thread",
 	COMMUNITIES: "/communities",
-	THREAD: (threadId: string) => `/thread/${threadId}`,
+	THREAD: (threadId: Types.ObjectId) => `/thread/${threadId}`,
 
 	PROFILE: {
 		BASE: "/profile",
 		EDIT: "/profile/edit",
-		USER_PROFILE: (userId: string) => `/profile/${userId}`,
+		USER_PROFILE: (userId: Types.ObjectId) => `/profile/${userId}`,
 	},
 };

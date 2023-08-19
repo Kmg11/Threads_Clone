@@ -1,6 +1,7 @@
 "use server";
 
 import { ModelsNames, ThreadModel, connectToDB } from "@/server";
+import { ThreadType } from "@/types";
 
 interface GetThreadsActionParams {
 	page?: number;
@@ -10,7 +11,10 @@ interface GetThreadsActionParams {
 export async function getThreadsAction({
 	page = 1,
 	limit = 20,
-}: GetThreadsActionParams) {
+}: GetThreadsActionParams): Promise<{
+	threads: ThreadType[];
+	isNext: boolean;
+}> {
 	connectToDB();
 
 	const skipAmount = (page - 1) * limit;
@@ -22,9 +26,13 @@ export async function getThreadsAction({
 			.sort({ createdAt: "desc" })
 			.skip(skipAmount)
 			.limit(limit)
-			.populate({ path: "author", model: ModelsNames.User })
 			.populate({
-				path: "children",
+				path: "author",
+				model: ModelsNames.User,
+				select: "_id name parentId username image",
+			})
+			.populate({
+				path: "comments",
 				populate: {
 					path: "author",
 					model: ModelsNames.User,
@@ -36,7 +44,7 @@ export async function getThreadsAction({
 			parentId: { $in: [null, undefined] },
 		});
 
-		const threads = await threadsQuery.exec();
+		const threads = (await threadsQuery.exec()) as ThreadType[];
 		const isNext = totalThreadsCount > skipAmount + threads.length;
 
 		return { threads, isNext };

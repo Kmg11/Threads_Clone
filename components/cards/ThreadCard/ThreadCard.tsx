@@ -1,33 +1,18 @@
 import { ROUTES } from "@/constants";
-import { Types } from "mongoose";
+import { ThreadType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
-interface ThreadCardProps {
-	id: string;
+interface ThreadCardProps extends ThreadType {
 	currentUserId: string;
-	parentId: Types.ObjectId | null;
-	content: string;
-	author: {
-		name: string;
-		image: string;
-		id: string;
-	};
-	community: {
-		id: string;
-		name: string;
-		image: string;
-	} | null;
-	createdAt: string;
-	comments: { author: { image: string } }[];
 	isComment?: boolean;
 }
 
 export const ThreadCard = ({
-	id,
+	_id,
 	currentUserId,
 	parentId,
-	content,
+	text: content,
 	author,
 	community,
 	createdAt,
@@ -40,14 +25,14 @@ export const ThreadCard = ({
 				<div className="flex w-full flex-1 flex-row gap-4">
 					<div className="flex flex-col items-center">
 						<Link
-							href={ROUTES.PROFILE.USER_PROFILE(author.id)}
+							href={ROUTES.PROFILE.USER_PROFILE(author._id)}
 							className="relative h-11 w-11"
 						>
 							<Image
 								src={author.image}
 								alt="Profile Image"
 								fill
-								className="cursor-pointer rounded-full w-11 h-11"
+								className="cursor-pointer rounded-full"
 							/>
 						</Link>
 
@@ -56,7 +41,7 @@ export const ThreadCard = ({
 
 					<div className="flex w-full flex-col">
 						<Link
-							href={ROUTES.PROFILE.USER_PROFILE(author.id)}
+							href={ROUTES.PROFILE.USER_PROFILE(author._id)}
 							className="w-fit"
 						>
 							<h4 className="cursor-pointer text-base-semibold text-light-1">
@@ -76,7 +61,7 @@ export const ThreadCard = ({
 									className="cursor-pointer object-contain"
 								/>
 
-								<Link href={ROUTES.THREAD(id)}>
+								<Link href={ROUTES.THREAD(_id)}>
 									<Image
 										src="/assets/reply.svg"
 										alt="reply"
@@ -104,7 +89,7 @@ export const ThreadCard = ({
 							</div>
 
 							{isComment && comments.length > 0 && (
-								<Link href={ROUTES.THREAD(id)}>
+								<Link href={ROUTES.THREAD(_id)}>
 									<p className="mt-1 text-subtle-medium text-gray-1">
 										{comments.length} replies
 									</p>

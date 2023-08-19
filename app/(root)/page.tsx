@@ -14,19 +14,22 @@ export default async function HomePage() {
 
 			<section className="mt-9 flex flex-col gap-10">
 				{threads.length > 0 ? (
-					threads.map((thread) => (
-						<ThreadCard
-							key={thread._id}
-							id={thread._id}
-							currentUserId={user?.id}
-							parentId={thread.parentId}
-							content={thread.text}
-							author={thread.author}
-							community={thread.community}
-							createdAt={thread.createdAt}
-							comments={thread.children}
-						/>
-					))
+					threads.map((thread) => {
+						return (
+							<ThreadCard
+								key={`${thread._id}`}
+								currentUserId={user?.id}
+								_id={thread._id}
+								text={thread.text}
+								author={thread.author}
+								community={thread.community}
+								parentId={thread.parentId}
+								createdAt={thread.createdAt}
+								updatedAt={thread.updatedAt}
+								comments={thread.comments}
+							/>
+						);
+					})
 				) : (
 					<p className="no-result">No threads found</p>
 				)}
