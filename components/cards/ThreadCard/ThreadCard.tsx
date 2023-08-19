@@ -10,6 +10,7 @@ interface ThreadCardProps extends ThreadType {
 
 export const ThreadCard = ({
 	_id,
+	currentUserId,
 	text: content,
 	author,
 	comments,
@@ -26,7 +27,7 @@ export const ThreadCard = ({
 				<div className="flex w-full flex-1 flex-row gap-4">
 					<div className="flex flex-col items-center">
 						<Link
-							href={ROUTES.PROFILE.USER_PROFILE(author._id)}
+							href={ROUTES.PROFILE.USER_PROFILE(currentUserId)}
 							className="relative h-11 w-11"
 						>
 							<Image
@@ -42,7 +43,7 @@ export const ThreadCard = ({
 
 					<div className="flex w-full flex-col">
 						<Link
-							href={ROUTES.PROFILE.USER_PROFILE(author._id)}
+							href={ROUTES.PROFILE.USER_PROFILE(currentUserId)}
 							className="w-fit"
 						>
 							<h4 className="cursor-pointer text-base-semibold text-light-1">
@@ -52,7 +53,7 @@ export const ThreadCard = ({
 
 						<p className="mt-2 text-small-regular text-light-2">{content}</p>
 
-						<div className="mt-5 flex flex-col gap-3">
+						<div className={`mt-5 flex flex-col gap-3 ${isComment && "mb-10"}`}>
 							<div className="flex gap-3.5">
 								<Image
 									src="/assets/heart-gray.svg"

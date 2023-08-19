@@ -2,9 +2,10 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import { sideBarLinks } from "./sidebarLinks";
+import { getSideBarLinks } from "./sidebarLinks";
 import Image from "next/image";
 import Link from "next/link";
+import { useAuth } from "@clerk/nextjs";
 
 interface SidebarLinksListProps {
 	place: "sidebar" | "bottomBar";
@@ -12,10 +13,11 @@ interface SidebarLinksListProps {
 
 export const SidebarLinksList = ({ place }: SidebarLinksListProps) => {
 	const pathname = usePathname();
+	const { userId } = useAuth();
 
 	return (
 		<>
-			{sideBarLinks.map(({ imgURL, label, route }) => {
+			{getSideBarLinks(userId || "").map(({ imgURL, label, route }) => {
 				const isActive =
 					(pathname.includes(route) && route.length > 1) || pathname === route;
 

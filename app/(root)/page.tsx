@@ -1,10 +1,12 @@
 import { ThreadCard } from "@/components/cards/ThreadCard/ThreadCard";
+import { ROUTES } from "@/constants";
 import { getThreadsAction } from "@/server/actions/threadActions/getThreads.action";
 import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 export default async function HomePage() {
 	const user = await currentUser();
-	if (!user) return null;
+	if (!user) return redirect(ROUTES.AUTH.SIGNIN);
 
 	const { threads } = await getThreadsAction({ page: 1, limit: 10 });
 

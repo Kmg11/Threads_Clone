@@ -1,4 +1,5 @@
 import { ROUTES } from "@/constants";
+import { UserType } from "@/types";
 
 interface SideBarLinksType {
 	imgURL: string;
@@ -6,7 +7,9 @@ interface SideBarLinksType {
 	label: string;
 }
 
-export const sideBarLinks: SideBarLinksType[] = [
+export const getSideBarLinks = (
+	userId: string | UserType["_id"]
+): SideBarLinksType[] => [
 	{
 		imgURL: "/assets/home.svg",
 		route: ROUTES.HOME,
@@ -34,7 +37,7 @@ export const sideBarLinks: SideBarLinksType[] = [
 	},
 	{
 		imgURL: "/assets/user.svg",
-		route: ROUTES.PROFILE.BASE,
+		route: ROUTES.PROFILE.USER_PROFILE(userId),
 		label: "Profile",
 	},
 ];

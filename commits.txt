@@ -112,6 +112,24 @@ Create comments section | Create user types
 
 ======================================================================================
 
+Create Profile Page | Create getUserThreadsAction
+
+- Create profile page
+- Create ProfileHeader component
+- Fix ThreadCard user profile link
+- Create ThreadsTab component
+- Create getUserThreadsAction
+- Fix profile link at LeftSideBar
+- Remove ROUTES.PROFILE.BASE link
+- Convert sideBarLinks to getSideBarLinks
+
+======================================================================================
+
+- Add empty message for profile and remove count if 0
+- Fix getUserThreadsAction type
+- Fix threads count at profile
+- Handle home page pagination and profile page pageination
+- Organize profile page components
 - Image stored at uploadthing quality is very bad
 - ThreadCard
 	- Handle like, rePost, share functionality

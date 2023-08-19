@@ -15,8 +15,7 @@ export const ROUTES = {
 	THREAD: (threadId: Types.ObjectId) => `/thread/${threadId}`,
 
 	PROFILE: {
-		BASE: "/profile",
 		EDIT: "/profile/edit",
-		USER_PROFILE: (userId: Types.ObjectId) => `/profile/${userId}`,
+		USER_PROFILE: (userId: Types.ObjectId | string) => `/profile/${userId}`,
 	},
 };
