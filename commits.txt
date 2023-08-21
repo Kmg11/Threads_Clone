@@ -125,6 +125,19 @@ Create Profile Page | Create getUserThreadsAction
 
 ======================================================================================
 
+Create Search Page | Create UserCard component
+
+- Create search page
+- Create Empty activity page
+- Create Empty communities page
+- Create searchUsersAction
+- Create UserCard component
+
+======================================================================================
+
+- Search page not completed
+- Handle user image if no image
+- Add createdAt to UserModel
 - Add empty message for profile and remove count if 0
 - Fix getUserThreadsAction type
 - Fix threads count at profile
@@ -141,6 +154,9 @@ Create Profile Page | Create getUserThreadsAction
 	- Terminal error with create thread page
 	- Move layout styles to there components
 	- Organize shad cn files and theme into folders and collect form components into folder and name must be capitalize
+	- if clerk have no user redirect to login
+	- Create usePage hook to handle repeating code
+	- Split use client components into small parts
 
 - console error in when onboarding page submit
 
