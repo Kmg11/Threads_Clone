@@ -12,7 +12,7 @@ export const ROUTES = {
 	ACTIVITY: "/activity",
 	CREATE_THREAD: "/create-thread",
 	COMMUNITIES: "/communities",
-	THREAD: (threadId: Types.ObjectId) => `/thread/${threadId}`,
+	THREAD: (threadId: Types.ObjectId | string) => `/thread/${threadId}`,
 
 	PROFILE: {
 		EDIT: "/profile/edit",

@@ -135,6 +135,15 @@ Create Search Page | Create UserCard component
 
 ======================================================================================
 
+Create Activity Page
+
+- Create Activity Page
+- Create getActivitiesAction
+- Center auth pages
+
+======================================================================================
+
+- Create ProfileImage component
 - Search page not completed
 - Handle user image if no image
 - Add createdAt to UserModel
