@@ -143,6 +143,16 @@ Create Activity Page
 
 ======================================================================================
 
+Create clerk webhook for communities
+
+- Create Clerk webhook
+- Create community actions
+- Create CommunityModel
+
+======================================================================================
+
+- fix pull line in community actions
+- Split community actions into small files
 - Create ProfileImage component
 - Search page not completed
 - Handle user image if no image
@@ -150,7 +160,7 @@ Create Activity Page
 - Add empty message for profile and remove count if 0
 - Fix getUserThreadsAction type
 - Fix threads count at profile
-- Handle home page pagination and profile page pageination
+- Handle home page pagination and profile page pagination
 - Organize profile page components
 - Image stored at uploadthing quality is very bad
 - ThreadCard
@@ -175,3 +185,4 @@ Create Activity Page
 - Enhance seo use coder one ceo video
 - Add constants for app name to use seo
 - Add constants for app routes
+- Create .env.local.example file
