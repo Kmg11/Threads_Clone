@@ -5,6 +5,7 @@ import { PostThreadSchemaType, PostThreadSchema } from "./postThread.schema";
 import { PostThreadFromProps } from "./PostThreadFrom";
 import { createThreadAction } from "@/server/actions/threadActions/createThread.action";
 import { ROUTES } from "@/constants";
+import { useOrganization } from "@clerk/nextjs";
 
 interface UsePostThreadFormProps {
 	userId: PostThreadFromProps["userId"];
@@ -13,6 +14,7 @@ interface UsePostThreadFormProps {
 export const usePostThreadForm = ({ userId }: UsePostThreadFormProps) => {
 	const router = useRouter();
 	const pathname = usePathname();
+	const { organization } = useOrganization();
 
 	const form = useForm<PostThreadSchemaType>({
 		resolver: zodResolver(PostThreadSchema),
@@ -24,7 +26,7 @@ export const usePostThreadForm = ({ userId }: UsePostThreadFormProps) => {
 			text: values.thread,
 			author: userId,
 			path: pathname,
-			communityId: null,
+			communityId: organization ? organization.id : null,
 		});
 
 		router.push(ROUTES.HOME);

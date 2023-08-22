@@ -12,6 +12,8 @@ export const ROUTES = {
 	ACTIVITY: "/activity",
 	CREATE_THREAD: "/create-thread",
 	COMMUNITIES: "/communities",
+	COMMUNITY: (communityId: Types.ObjectId | string) =>
+		`/communities/${communityId}`,
 	THREAD: (threadId: Types.ObjectId | string) => `/thread/${threadId}`,
 
 	PROFILE: {

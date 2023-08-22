@@ -6,7 +6,7 @@ export interface ThreadDocumentType {
 	text: string;
 	author: mongoose.Types.ObjectId;
 	parentId: mongoose.Types.ObjectId | null;
-	community: mongoose.Types.ObjectId | null;
+	community: any | null;
 	comments: string[];
 	createdAt: string;
 	updatedAt: string;

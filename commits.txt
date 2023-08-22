@@ -155,7 +155,19 @@ Fix mongoDB URL
 
 ======================================================================================
 
-- Connect mongodb in vercel
+Create community route | Enhancements to handle communities
+
+- Create community route
+- Modify PostThreadForm to handle create thread under community
+- Handle show community in ThreadCard
+- Update createThreadAction to handle create thread under community
+- Fix middleware ignoredRoutes miss spelling
+
+======================================================================================
+
+- Communities are not created
+- Remove // @ts-ignore from webhook/clerk
+- Create CommunityType
 - fix pull line in community actions
 - Split community actions into small files
 - Create ProfileImage component

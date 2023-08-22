@@ -1,6 +1,6 @@
 "use server";
 
-import { ThreadModel, UserModel, connectToDB } from "@/server";
+import { CommunityModel, ThreadModel, UserModel, connectToDB } from "@/server";
 import { UserType } from "@/types";
 import { revalidatePath } from "next/cache";
 
@@ -20,15 +20,27 @@ export async function createThreadAction({
 	connectToDB();
 
 	try {
+		const communityIdObject = await CommunityModel.findOne(
+			{ id: communityId },
+			{ _id: 1 }
+		);
+
 		const createdThread = await ThreadModel.create({
 			text,
 			author,
-			community: null,
+			community: communityIdObject,
 		});
 
 		await UserModel.findByIdAndUpdate(author, {
 			$push: { threads: createdThread._id },
 		});
+
+		if (communityIdObject) {
+			// * Update Community model
+			await CommunityModel.findByIdAndUpdate(communityIdObject, {
+				$push: { threads: createdThread._id },
+			});
+		}
 
 		revalidatePath(path);
 
