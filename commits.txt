@@ -151,6 +151,7 @@ Create clerk webhook for communities
 
 ======================================================================================
 
+- Connect mongodb in vercel
 - fix pull line in community actions
 - Split community actions into small files
 - Create ProfileImage component
