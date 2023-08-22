@@ -19,11 +19,11 @@ export async function updateUserAction({
 	bio,
 	image,
 	path,
-}: UpdateUserActionParams): Promise<void> {
+}: UpdateUserActionParams) {
 	connectToDB();
 
 	try {
-		await UserModel.findOneAndUpdate(
+		const updatedUser = await UserModel.findOneAndUpdate(
 			{ id: userId },
 			{
 				username: username.toLowerCase(),
@@ -32,12 +32,14 @@ export async function updateUserAction({
 				image,
 				onboarded: true,
 			},
-			{ upsert: true }
+			{ upsert: true, new: true }
 		);
 
 		if (path === "/profile/edit") {
 			revalidatePath(path);
 		}
+
+		return { updatedUser };
 	} catch (error: any) {
 		throw new Error(`Failed to create/update user: ${error.message}`);
 	}

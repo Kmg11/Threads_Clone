@@ -41,6 +41,8 @@ export async function addCommentToThreadAction({
 		await originalThread.save();
 
 		revalidatePath(path);
+
+		return { commentThread: savedCommentThread };
 	} catch (error: any) {
 		throw new Error(`Failed to add comment to thread: ${error.message}`);
 	}

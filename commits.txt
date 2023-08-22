@@ -186,3 +186,4 @@ Create clerk webhook for communities
 - Add constants for app name to use seo
 - Add constants for app routes
 - Create .env.local.example file
+- Remove ignore type check from next config

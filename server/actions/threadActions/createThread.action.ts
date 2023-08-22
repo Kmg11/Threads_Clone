@@ -31,6 +31,8 @@ export async function createThreadAction({
 		});
 
 		revalidatePath(path);
+
+		return { createdThread };
 	} catch (error: any) {
 		throw new Error(`Failed to create thread: ${error.message}`);
 	}
