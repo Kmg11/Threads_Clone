@@ -16,6 +16,11 @@ export async function getUserThreadsAction(userId: UserType["_id"]): Promise<{
 			model: ModelsNames.Thread,
 			populate: [
 				{
+					path: "community",
+					model: ModelsNames.Community,
+					select: "name id image _id",
+				},
+				{
 					path: "author",
 					model: ModelsNames.User,
 					select: "_id name username image",

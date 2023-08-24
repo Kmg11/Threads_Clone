@@ -165,6 +165,18 @@ Create community route | Enhancements to handle communities
 
 ======================================================================================
 
+Fix CommunityModel
+
+- Fix CommunityModel
+- Populate community in getThreadsAction and getThreadAction
+- Populate community in getUserThreadsAction
+
+======================================================================================
+
+- there is a time between create community and add to my database cause a problem
+	- Check if no community add to database and there is a community id send error
+- Move getUserThreadsAction to user actions
+- Review threads and user actions
 - Communities are not created
 - Remove // @ts-ignore from webhook/clerk
 - Create CommunityType

@@ -32,6 +32,10 @@ export async function getThreadsAction({
 				select: "_id name parentId username image",
 			})
 			.populate({
+				path: "community",
+				model: ModelsNames.Community,
+			})
+			.populate({
 				path: "comments",
 				populate: {
 					path: "author",

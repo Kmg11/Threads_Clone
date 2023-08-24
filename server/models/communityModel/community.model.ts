@@ -14,4 +14,5 @@ const communitySchema = new mongoose.Schema({
 });
 
 export const CommunityModel =
-	mongoose.models.User || mongoose.model(ModelsNames.User, communitySchema);
+	mongoose.models.Community ||
+	mongoose.model(ModelsNames.Community, communitySchema);
