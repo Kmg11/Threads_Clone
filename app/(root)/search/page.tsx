@@ -1,18 +1,10 @@
-import { UserCard } from "@/components/cards/UserCard/UserCard";
-import { ROUTES } from "@/constants";
-import { getUserAction } from "@/server/actions/userActions/getUser.action";
-import { searchUsersAction } from "@/server/actions/userActions/searchUsers.action";
-import { currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
 import React from "react";
+import { UserCard } from "@/components/cards/UserCard/UserCard";
+import { checkUser } from "@/lib/checkUser";
+import { searchUsersAction } from "@/server/actions/userActions/searchUsers.action";
 
 export default async function SearchPage() {
-	const user = await currentUser();
-	if (!user) return null;
-
-	const userInfo = await getUserAction(user.id);
-	if (!userInfo?.onboarded) return redirect(ROUTES.AUTH.ONBOARDING);
-
+	const { userInfo } = await checkUser();
 	const { isNext, users } = await searchUsersAction({
 		page: 1,
 		limit: 20,

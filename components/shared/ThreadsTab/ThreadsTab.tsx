@@ -1,7 +1,7 @@
 import { ThreadCard } from "@/components/cards/ThreadCard/ThreadCard";
 import { ROUTES } from "@/constants";
 import { fetchCommunityPosts } from "@/server/actions/community/community.actions";
-import { getUserThreadsAction } from "@/server/actions/threadActions/getUserThreads.action";
+import { getUserThreadsAction } from "@/server/actions/userActions/getUserThreads.action";
 import { UserType } from "@/types";
 import { redirect } from "next/navigation";
 import React from "react";

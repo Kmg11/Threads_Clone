@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { ProfileHeader } from "@/components/shared/ProfileHeader/ProfileHeader";
-import { currentUser } from "@clerk/nextjs";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ThreadsTab } from "@/components/shared/ThreadsTab/ThreadsTab";
 import { fetchCommunityDetails } from "@/server/actions/community/community.actions";
 import { UserCard } from "@/components/cards/UserCard/UserCard";
+import { checkUser } from "@/lib/checkUser";
 
 enum CommunityTabs {
 	THREADS = "threads",
@@ -34,9 +34,7 @@ interface ProfilePageProps {
 }
 
 export default async function CommunityPage({ params }: ProfilePageProps) {
-	const user = await currentUser();
-	if (!user) return null;
-
+	const { user } = await checkUser();
 	const communityDetails = await fetchCommunityDetails(params.communityId);
 
 	return (

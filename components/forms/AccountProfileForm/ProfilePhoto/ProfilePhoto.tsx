@@ -7,9 +7,9 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
 import { Control, set } from "react-hook-form";
 import { UserSchemaType } from "../accountProfile.schema";
+import { AppAvatar } from "@/components/shared/AppAvatar/AppAvatar";
 
 interface ProfilePhotoProps {
 	control: Control<UserSchemaType>;
@@ -50,22 +50,9 @@ export const ProfilePhoto = ({ control, setFiles }: ProfilePhotoProps) => {
 				<FormItem className="flex items-center gap-4">
 					<FormLabel className="account-form_image-label">
 						{field.value ? (
-							<Image
-								src={field.value}
-								alt="profile photo"
-								width={96}
-								height={96}
-								priority
-								className="rounded-full object-contain"
-							/>
+							<AppAvatar src={field.value} width={96} height={96} />
 						) : (
-							<Image
-								src="/assets/profile.svg"
-								alt="profile photo"
-								width={24}
-								height={24}
-								className="object-contain"
-							/>
+							<AppAvatar src="/assets/profile.svg" width={24} height={24} />
 						)}
 					</FormLabel>
 

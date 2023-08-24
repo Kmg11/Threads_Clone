@@ -1,12 +1,9 @@
-import { ProfileHeader } from "@/components/shared/ProfileHeader/ProfileHeader";
-import { ROUTES } from "@/constants";
-import { getUserAction } from "@/server/actions/userActions/getUser.action";
-import { currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
 import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
+import { ProfileHeader } from "@/components/shared/ProfileHeader/ProfileHeader";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ThreadsTab } from "@/components/shared/ThreadsTab/ThreadsTab";
+import { checkUser } from "@/lib/checkUser";
 
 enum ProfileTabs {
 	THREADS = "threads",
@@ -27,11 +24,7 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-	const user = await currentUser();
-	if (!user) return null;
-
-	const userInfo = await getUserAction(params.userId);
-	if (!userInfo?.onboarded) return redirect(ROUTES.AUTH.ONBOARDING);
+	const { user, userInfo } = await checkUser();
 
 	return (
 		<section>

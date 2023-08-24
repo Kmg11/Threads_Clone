@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 export default async function Onboarding() {
 	const user = await currentUser();
-	if (!user) return null;
+	if (!user) return redirect(ROUTES.AUTH.SIGNIN);
 
 	const userInfo = await getUserAction(user.id);
 	if (userInfo?.onboarded) return redirect(ROUTES.HOME);

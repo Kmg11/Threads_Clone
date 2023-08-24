@@ -1,15 +1,8 @@
 import { PostThreadFrom } from "@/components/forms/PostThreadFrom/PostThreadFrom";
-import { ROUTES } from "@/constants";
-import { getUserAction } from "@/server/actions/userActions/getUser.action";
-import { currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import { checkUser } from "@/lib/checkUser";
 
 export default async function CreateThreadPage() {
-	const user = await currentUser();
-	if (!user) return null;
-
-	const userInfo = await getUserAction(user.id);
-	if (!userInfo?.onboarded) return redirect(ROUTES.AUTH.ONBOARDING);
+	const { userInfo } = await checkUser();
 
 	return (
 		<>

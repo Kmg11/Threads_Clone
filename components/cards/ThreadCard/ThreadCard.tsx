@@ -1,3 +1,4 @@
+import { AppAvatar } from "@/components/shared/AppAvatar/AppAvatar";
 import { ROUTES } from "@/constants";
 import { formatDateString } from "@/lib";
 import { ThreadType } from "@/types";
@@ -29,15 +30,12 @@ export const ThreadCard = ({
 			<div className="flex items-start justify-between">
 				<div className="flex w-full flex-1 flex-row gap-4">
 					<div className="flex flex-col items-center">
-						<Link
-							href={ROUTES.PROFILE.USER_PROFILE(currentUserId)}
-							className="relative h-11 w-11"
-						>
-							<Image
-								src={author.image || ""}
-								alt="Profile Image"
-								fill
-								className="cursor-pointer rounded-full object-cover"
+						<Link href={ROUTES.PROFILE.USER_PROFILE(currentUserId)}>
+							<AppAvatar
+								src={author.image}
+								width={44}
+								height={44}
+								name={author.name}
 							/>
 						</Link>
 
@@ -117,12 +115,12 @@ export const ThreadCard = ({
 						{formatDateString(createdAt)} - {community.name} Community
 					</p>
 
-					<Image
+					<AppAvatar
 						src={community.image}
-						alt={community.name}
 						width={14}
 						height={14}
-						className="ms-1 rounded-full object-cover"
+						name={community.name}
+						className="ms-1"
 					/>
 				</Link>
 			)}

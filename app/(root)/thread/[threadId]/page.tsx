@@ -1,10 +1,7 @@
 import { ThreadCard } from "@/components/cards/ThreadCard/ThreadCard";
 import { CreateCommentForm } from "@/components/forms/CreateCommentForm/CreateCommentForm";
-import { ROUTES } from "@/constants";
+import { checkUser } from "@/lib/checkUser";
 import { getThreadAction } from "@/server/actions/threadActions/getThread.action";
-import { getUserAction } from "@/server/actions/userActions/getUser.action";
-import { currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
 
 interface ThreadPageProps {
 	params: {
@@ -13,14 +10,7 @@ interface ThreadPageProps {
 }
 
 export default async function ThreadPage({ params }: ThreadPageProps) {
-	if (!params.threadId) return null;
-
-	const user = await currentUser();
-	if (!user) return null;
-
-	const userInfo = await getUserAction(user.id);
-	if (!userInfo?.onboarded) redirect(ROUTES.AUTH.ONBOARDING);
-
+	const { user, userInfo } = await checkUser();
 	const { thread } = await getThreadAction(params.threadId);
 	if (!thread) return null;
 
@@ -46,6 +36,7 @@ export default async function ThreadPage({ params }: ThreadPageProps) {
 					threadId={thread._id}
 					currentUserImg={userInfo.image || ""}
 					currentUserId={userInfo._id}
+					currentUserName={userInfo.name}
 				/>
 			</div>
 

@@ -1,9 +1,9 @@
 "use client";
 
+import { AppAvatar } from "@/components/shared/AppAvatar/AppAvatar";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants";
 import { UserType } from "@/types";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -27,13 +27,7 @@ export const UserCard = ({
 	return (
 		<article className="user-card">
 			<div className="user-card_avatar">
-				<Image
-					src={image || ""}
-					alt="User image"
-					width={48}
-					height={48}
-					className="rounded-full object-cover"
-				/>
+				<AppAvatar src={image} width={48} height={48} name={name} />
 
 				<div className="flex-1 text-ellipsis">
 					<h4 className="text-base-semibold text-light-1">{name}</h4>

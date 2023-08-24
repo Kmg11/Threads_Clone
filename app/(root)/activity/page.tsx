@@ -1,19 +1,12 @@
-import { ROUTES } from "@/constants";
-import { getActivitiesAction } from "@/server/actions/userActions/getActivitiesAction.action";
-import { getUserAction } from "@/server/actions/userActions/getUser.action";
-import { currentUser } from "@clerk/nextjs";
-import Image from "next/image";
-import Link from "next/link";
-import { redirect } from "next/navigation";
 import React from "react";
+import Link from "next/link";
+import { AppAvatar } from "@/components/shared/AppAvatar/AppAvatar";
+import { ROUTES } from "@/constants";
+import { checkUser } from "@/lib/checkUser";
+import { getActivitiesAction } from "@/server/actions/userActions/getActivitiesAction.action";
 
 export default async function ActivityPage() {
-	const user = await currentUser();
-	if (!user) return null;
-
-	const userInfo = await getUserAction(user.id);
-	if (!userInfo?.onboarded) return redirect(ROUTES.AUTH.ONBOARDING);
-
+	const { userInfo } = await checkUser();
 	const { activities } = await getActivitiesAction(userInfo._id);
 
 	return (
@@ -28,12 +21,11 @@ export default async function ActivityPage() {
 							href={ROUTES.THREAD(activity.parentId || "")}
 						>
 							<article className="activity-card">
-								<Image
-									src={activity.author.image || ""}
-									alt="Profile Picture"
+								<AppAvatar
+									src={activity.author.image}
 									width={20}
 									height={20}
-									className="rounded-full object-cover"
+									name={activity.author.name}
 								/>
 
 								<p className="!text-small-regular text-light-1">

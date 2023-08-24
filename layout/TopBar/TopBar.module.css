@@ -1,0 +1,3 @@
+.TopBar {
+	@apply fixed top-0 z-30 flex w-full items-center justify-between bg-dark-2 px-6 py-3;
+}

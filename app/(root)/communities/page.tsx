@@ -1,19 +1,10 @@
 import CommunityCard from "@/components/cards/CommunityCard/CommunityCard";
-import { UserCard } from "@/components/cards/UserCard/UserCard";
-import { ROUTES } from "@/constants";
+import { checkUser } from "@/lib/checkUser";
 import { fetchCommunities } from "@/server/actions/community/community.actions";
-import { getUserAction } from "@/server/actions/userActions/getUser.action";
-import { searchUsersAction } from "@/server/actions/userActions/searchUsers.action";
-import { currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function CommunitiesPage() {
-	const user = await currentUser();
-	if (!user) return null;
-
-	const userInfo = await getUserAction(user.id);
-	if (!userInfo?.onboarded) return redirect(ROUTES.AUTH.ONBOARDING);
+	await checkUser();
 
 	const { isNext, communities } = await fetchCommunities({
 		pageNumber: 1,

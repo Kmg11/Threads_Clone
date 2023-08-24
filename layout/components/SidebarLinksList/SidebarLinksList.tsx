@@ -6,6 +6,7 @@ import { getSideBarLinks } from "./sidebarLinks";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
+import SidebarLinksListStyles from "./SidebarLinksList.module.css";
 
 interface SidebarLinksListProps {
 	place: "sidebar" | "bottomBar";
@@ -26,7 +27,11 @@ export const SidebarLinksList = ({ place }: SidebarLinksListProps) => {
 						key={label}
 						href={route}
 						className={`
-							${place === "sidebar" ? "leftsidebar_link" : "bottombar_link"}
+							${
+								place === "sidebar"
+									? SidebarLinksListStyles.LeftSidebar_Link
+									: SidebarLinksListStyles.BottomBar_Link
+							}
 							${isActive ? "bg-primary-500" : ""}
 						`}
 					>

@@ -1,6 +1,7 @@
 import { UserType } from "@/types";
 import Image from "next/image";
 import React from "react";
+import { AppAvatar } from "../AppAvatar/AppAvatar";
 
 interface ProfileHeaderProps {
 	authUserId: string;
@@ -25,12 +26,13 @@ export const ProfileHeader = ({
 		<div className="flex w-full flex-col justify-start">
 			<div className="flex items-center justify-between">
 				<div className="flex items-center gap-3">
-					<div className="relative h-20 w-20 object-cover">
-						<Image
-							src={image || ""}
-							alt="Profile Image"
-							fill
-							className="rounded-full object-cover shadow-2xl"
+					<div>
+						<AppAvatar
+							src={image}
+							width={80}
+							height={80}
+							name={name}
+							className="shadow-2xl"
 						/>
 					</div>
 

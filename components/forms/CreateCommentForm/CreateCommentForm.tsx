@@ -13,18 +13,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useCreateCommentForm } from "./useCreateCommentForm";
-import Image from "next/image";
+import { AppAvatar } from "@/components/shared/AppAvatar/AppAvatar";
 
 export interface CreateCommentFormProps {
 	threadId: Types.ObjectId;
 	currentUserImg: string;
 	currentUserId: Types.ObjectId;
+	currentUserName: string;
 }
 
 export const CreateCommentForm = ({
 	threadId,
 	currentUserId,
 	currentUserImg,
+	currentUserName,
 }: CreateCommentFormProps) => {
 	const { form, onSubmit } = useCreateCommentForm({ currentUserId, threadId });
 
@@ -37,12 +39,11 @@ export const CreateCommentForm = ({
 					render={({ field }) => (
 						<FormItem className="flex items-center gap-3 w-full">
 							<FormLabel>
-								<Image
+								<AppAvatar
 									src={currentUserImg}
-									alt="current user image"
 									width={48}
 									height={48}
-									className="rounded-full object-cover"
+									name={currentUserName}
 								/>
 							</FormLabel>
 

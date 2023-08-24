@@ -1,0 +1,7 @@
+.BottomBar_Link {
+	@apply relative flex flex-col items-center gap-2 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5;
+}
+
+.LeftSidebar_Link {
+	@apply relative flex justify-start gap-4 rounded-lg p-4;
+}
