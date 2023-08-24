@@ -1,12 +1,15 @@
 import { ThreadCard } from "@/components/cards/ThreadCard/ThreadCard";
+import { ROUTES } from "@/constants";
+import { fetchCommunityPosts } from "@/server/actions/community/community.actions";
 import { getUserThreadsAction } from "@/server/actions/threadActions/getUserThreads.action";
 import { UserType } from "@/types";
+import { redirect } from "next/navigation";
 import React from "react";
 
 interface ThreadsTabProps {
 	currentUserId: string;
 	accountId: UserType["_id"];
-	accountType: "user";
+	accountType: "user" | "community";
 }
 
 export const ThreadsTab = async ({
@@ -14,11 +17,19 @@ export const ThreadsTab = async ({
 	accountType,
 	currentUserId,
 }: ThreadsTabProps) => {
-	const { threads } = await getUserThreadsAction(accountId);
+	let result: any;
+
+	if (accountType === "user") {
+		result = await getUserThreadsAction(accountId);
+	} else {
+		result = await fetchCommunityPosts(accountId.toString());
+	}
+
+	if (!result) redirect(ROUTES.HOME);
 
 	return (
 		<section className="mt-9 flex flex-col gap-10">
-			{threads.map((thread) => (
+			{result.threads.map((thread: any) => (
 				<ThreadCard
 					key={`${thread._id}`}
 					currentUserId={currentUserId}

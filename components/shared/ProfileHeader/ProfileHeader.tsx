@@ -9,6 +9,7 @@ interface ProfileHeaderProps {
 	username: UserType["username"];
 	image: UserType["image"];
 	bio: UserType["bio"];
+	type?: "user" | "community";
 }
 
 export const ProfileHeader = ({
@@ -18,6 +19,7 @@ export const ProfileHeader = ({
 	image,
 	name,
 	username,
+	type,
 }: ProfileHeaderProps) => {
 	return (
 		<div className="flex w-full flex-col justify-start">

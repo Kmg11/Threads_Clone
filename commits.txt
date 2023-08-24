@@ -173,6 +173,25 @@ Fix CommunityModel
 
 ======================================================================================
 
+Create Communities Page | Create CommunityCard component | Create Community page
+
+- Create community page
+- Enhance ThreadsTab component to handle community threads
+- Create CommunityCard component
+- Create communities page ui
+
+======================================================================================
+
+- Complete RightSideBar content
+- Add like feature
+- add Replies count to thread card in comments mode
+- Add search bar for search and communities pages
+- Fix ThreadsTab type
+- Fix type any in community members
+- profile page tabs same content
+- split lists in profile page and community page into another file
+- Create component to handle profile pages
+- When create community page reload
 - there is a time between create community and add to my database cause a problem
 	- Check if no community add to database and there is a community id send error
 - Move getUserThreadsAction to user actions
@@ -216,3 +235,4 @@ Fix CommunityModel
 - Add constants for app routes
 - Create .env.local.example file
 - Remove ignore type check from next config
+- Remove id from user and use only _id
