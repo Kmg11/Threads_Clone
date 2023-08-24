@@ -205,6 +205,11 @@ Enhancements on styles and Images | Create AppAvatar component
 
 ======================================================================================
 
+Fix deployment error come from communityId page remove export for communityTabs
+
+======================================================================================
+
+- Close resize in textarea
 - increase left and right sidebar scrollbar size
 - make bio optional
 - Create tabs component

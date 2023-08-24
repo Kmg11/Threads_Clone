@@ -13,7 +13,7 @@ enum CommunityTabs {
 	REQUESTS = "requests",
 }
 
-export const communityTabs = [
+const communityTabs = [
 	{ value: CommunityTabs.THREADS, label: "Threads", icon: "/assets/reply.svg" },
 	{
 		value: CommunityTabs.MEMBERS,
@@ -27,13 +27,13 @@ export const communityTabs = [
 	},
 ];
 
-interface ProfilePageProps {
+interface CommunityPageProps {
 	params: {
 		communityId: string;
 	};
 }
 
-export default async function CommunityPage({ params }: ProfilePageProps) {
+export default async function CommunityPage({ params }: CommunityPageProps) {
 	const { user } = await checkUser();
 	const communityDetails = await fetchCommunityDetails(params.communityId);
 
