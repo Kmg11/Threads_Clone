@@ -2,28 +2,25 @@ import { ModelsNames } from "@/server";
 import { UserDocumentType } from "@/types";
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema<UserDocumentType>({
-	id: { type: String, required: true, unique: true }, // * This is the clerk id
-	username: { type: String, required: true, unique: true },
-	name: { type: String, required: true },
-	image: { type: String },
-	bio: { type: String },
-	onboarded: { type: Boolean, default: false },
+const userSchema = new mongoose.Schema<UserDocumentType>(
+	{
+		id: { type: String, required: true, unique: true }, // * This is the clerk id
+		username: { type: String, required: true, unique: true },
+		name: { type: String, required: true },
+		image: { type: String },
+		bio: { type: String },
+		onboarded: { type: Boolean, default: false },
 
-	threads: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: ModelsNames.Thread,
-		},
-	],
+		threads: [
+			{ type: mongoose.Schema.Types.ObjectId, ref: ModelsNames.Thread },
+		],
 
-	communities: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: ModelsNames.Community,
-		},
-	],
-});
+		communities: [
+			{ type: mongoose.Schema.Types.ObjectId, ref: ModelsNames.Community },
+		],
+	},
+	{ timestamps: true, versionKey: false }
+);
 
 export const UserModel: mongoose.Model<
 	UserDocumentType,

@@ -32,13 +32,11 @@ export const UserSchema = z.object({
 
 	bio: z
 		.string({
-			required_error: "Bio is required",
 			invalid_type_error: "Bio must be a string",
 			description: "Bio",
 		})
-		.min(3, { message: "Bio must be at least 3 characters long" })
 		.max(1000, { message: "Bio must be at most 1000 characters long" })
-		.nonempty({ message: "Bio must not be empty" }),
+		.optional(),
 });
 
 export type UserSchemaType = z.infer<typeof UserSchema>;

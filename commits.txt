@@ -209,32 +209,38 @@ Fix deployment error come from communityId page remove export for communityTabs
 
 ======================================================================================
 
-- Close resize in textarea
-- increase left and right sidebar scrollbar size
-- make bio optional
+Enhancements on user model and onboarding page
+
+- Make bio optional in onboarded page
+- Enhance AccountProfileForm type
+- Enhance onboarding page types
+- Add timestamp to user model
+- Remove versionKey from user model
+
+======================================================================================
+
 - Create tabs component
 - Review CommunityCard
-- Decrease profile page space between bio and next section
 - Check TODO and any comments in code
-- Add communities to profile page
 
 - Enhancements
 	- Global
 		- Review threads and user actions to populate community
 		- Handle pagination for [HomePage, ProfilePage, SearchPage, CommunitiesPage, CommunityPage]
 		- Image stored at uploadthing quality is very bad
-		- Create getClerkUser function to use in pages
 		- Handle errors in actions
 		- Terminal error with create thread page
 		- Move layout styles to there components
 		- Organize shad cn files and theme into folders and collect form components into folder and name must be capitalize
 		- Split use client components into small parts
 		- Check organization settings
-		- console error in when onboarding page submit
 		- Add constants for app name to use seo
-		- Create .env.local.example file
 		- Remove ignore type check from next config [ check deployment ]
-		- Remove id from user and use only _id
+		- add community type to populate threads and user
+
+	- Styles
+		- Close resize in textarea
+		- increase left and right sidebar scrollbar size
 
 	- Community
 		- Create CommunityType
@@ -256,13 +262,10 @@ Fix deployment error come from communityId page remove export for communityTabs
 		- Add empty message for profile and remove count if 0
 		- Fix threads count at profile
 		- Organize profile page components
-
-	- Fix ThreadsTab type
-	- Add createdAt to UserModel
-	- Fix getUserThreadsAction type
-	- ThreadCard
-		- Enhance user image style
-	- Check onboarded in home page
+		- Decrease profile page space between bio and next section
+		- Fix ThreadsTab type
+		- Fix getUserThreadsAction type
+		- Add communities to profile page
 
 - New Features
 	- Thread

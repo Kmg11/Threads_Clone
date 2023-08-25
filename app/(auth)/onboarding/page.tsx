@@ -1,6 +1,7 @@
 import { AccountProfileForm } from "@/components/forms/AccountProfileForm/AccountProfileForm";
 import { ROUTES } from "@/constants";
 import { getUserAction } from "@/server/actions/userActions/getUser.action";
+import { UserType } from "@/types";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
@@ -11,14 +12,14 @@ export default async function Onboarding() {
 	const userInfo = await getUserAction(user.id);
 	if (userInfo?.onboarded) return redirect(ROUTES.HOME);
 
-	const userData = {
-		id: user.id,
-		objectId: JSON.stringify(userInfo?._id),
-		username: userInfo?.username || user.username,
-		name: userInfo?.name || `${user.firstName} ${user.lastName}`,
-		bio: userInfo?.bio || "",
-		image: userInfo?.image || user.imageUrl,
-	};
+	const userData: Pick<UserType, "id" | "username" | "name" | "bio" | "image"> =
+		{
+			id: user.id,
+			username: userInfo?.username || user.username || "",
+			name: userInfo?.name || `${user.firstName} ${user.lastName}`,
+			bio: userInfo?.bio,
+			image: userInfo?.image || user.imageUrl,
+		};
 
 	return (
 		<main className="mx-auto flex max-w-3xl flex-col justify-start px-10 py-20">
@@ -29,7 +30,7 @@ export default async function Onboarding() {
 			</p>
 
 			<section className="my-9 bg-dark-2 p-10">
-				<AccountProfileForm user={userData} btnTitle="Continue" />
+				<AccountProfileForm user={userData} />
 			</section>
 		</main>
 	);

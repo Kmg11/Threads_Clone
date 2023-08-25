@@ -10,6 +10,8 @@ export interface UserDocumentType {
 	onboarded: boolean;
 	threads: string[];
 	communities: string[];
+	createdAt: string;
+	updatedAt: string;
 }
 
 export interface UserType extends UserDocumentType {}

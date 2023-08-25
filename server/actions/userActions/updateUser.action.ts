@@ -1,15 +1,13 @@
 "use server";
 
 import { UserModel, connectToDB } from "@/server";
+import { UserType } from "@/types";
 import { revalidatePath } from "next/cache";
 
-interface UpdateUserActionParams {
+interface UpdateUserActionParams
+	extends Pick<UserType, "name" | "username" | "image" | "bio"> {
 	userId: string;
-	username: string;
-	name: string;
-	image: string;
 	path: string;
-	bio: string;
 }
 
 export async function updateUserAction({

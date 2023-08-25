@@ -6,23 +6,13 @@ import { Form } from "@/components/ui/form";
 import { ProfilePhoto } from "./ProfilePhoto/ProfilePhoto";
 import { AccountProfileFormField } from "./AccountProfileFormField/AccountProfileFormField";
 import { useAccountProfileForm } from "./useAccountProfileForm";
+import { UserType } from "@/types";
 
 export interface AccountProfileFormProps {
-	user: {
-		id: string;
-		objectId: string;
-		username: string | null;
-		name: string;
-		bio: string;
-		image: string;
-	};
-	btnTitle: string;
+	user: Pick<UserType, "id" | "username" | "name" | "bio" | "image">;
 }
 
-export const AccountProfileForm = ({
-	btnTitle,
-	user,
-}: AccountProfileFormProps) => {
+export const AccountProfileForm = ({ user }: AccountProfileFormProps) => {
 	const { form, onSubmit, setFiles } = useAccountProfileForm({ user });
 
 	return (
@@ -55,7 +45,7 @@ export const AccountProfileForm = ({
 				/>
 
 				<Button type="submit" className="bg-primary-500">
-					{btnTitle}
+					Continue
 				</Button>
 			</form>
 		</Form>
