@@ -5,7 +5,7 @@ import { UserType } from "@/types";
 import { FilterQuery, SortOrder } from "mongoose";
 
 interface SearchUsersActionParams {
-	userId: UserType["_id"];
+	userId: UserType["id"];
 	page?: number;
 	limit?: number;
 	searchString?: string;
@@ -26,7 +26,7 @@ export const searchUsersAction = async ({
 		const regex = new RegExp(searchString, "i");
 
 		const query: FilterQuery<UserType> = {
-			_id: { $ne: userId },
+			id: { $ne: userId },
 		};
 
 		if (searchString.trim()) {

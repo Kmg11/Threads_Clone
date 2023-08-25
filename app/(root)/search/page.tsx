@@ -4,11 +4,11 @@ import { checkUser } from "@/lib/checkUser";
 import { searchUsersAction } from "@/server/actions/userActions/searchUsers.action";
 
 export default async function SearchPage() {
-	const { userInfo } = await checkUser();
+	const { user } = await checkUser();
 	const { isNext, users } = await searchUsersAction({
 		page: 1,
 		limit: 20,
-		userId: userInfo._id,
+		userId: user.id,
 		searchString: "",
 		sortBy: "desc",
 	});

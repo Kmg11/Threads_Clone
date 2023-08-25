@@ -1,8 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { OrganizationSwitcher } from "@clerk/nextjs";
-import { LogoutButton } from "../components";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import TopBarStyles from "./TopBar.module.css";
 
 export const TopBar = () => {
@@ -15,10 +14,6 @@ export const TopBar = () => {
 			</Link>
 
 			<div className="flex items-center gap-1">
-				<div className="block md:hidden">
-					<LogoutButton place="topBar" />
-				</div>
-
 				<OrganizationSwitcher
 					appearance={{
 						elements: {
@@ -26,6 +21,8 @@ export const TopBar = () => {
 						},
 					}}
 				/>
+
+				<UserButton />
 			</div>
 		</nav>
 	);

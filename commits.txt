@@ -235,13 +235,25 @@ Enhance on Community actions and functionality
 
 ======================================================================================
 
-- Enhance communities page style
-- there is a time between create community and add to my database cause a problem
-	- Check if no community add to database and there is a community id send error
-- Check all community actions after deploy
+Create suggested communities and users content | Add user settings
+
+- Remove title from home page
+- Add suggested communities content
+- Add suggested users content
+- Add UserButton to TopBar
+- Add clerk user settings
+- Remove LogoutButton from TopBar ane LeftSideBar
+- Remove LogoutButton
+
+======================================================================================
 
 - Enhancements
 	- Global
+		- Clerk components responsive
+		- Listen to user changes to change user state
+			- change [ image, name, bio, username ]
+			- Delete user
+			- All settings
 		- Create tabs component
 		- Review CommunityCard
 		- Check TODO and any comments in code
@@ -258,10 +270,16 @@ Enhance on Community actions and functionality
 		- Add constants for app name to use seo
 		- Remove ignore type check from next config [ check deployment ]
 		- add community type to populate threads and user
+		- handle ceo for all pages
 
 	- Styles
 		- Close resize in textarea
 		- increase left and right sidebar scrollbar size
+
+	- Community
+		- Enhance communities page style
+		- there is a time between create community and add to my database cause a problem
+			- Check if no community add to database and there is a community id send error
 
 	- Profile page | Community Page
 		- Create Profile component
@@ -282,14 +300,6 @@ Enhance on Community actions and functionality
 		- Re post Thread
 		- Share Thread
 		- Add Replies count to ThreadCard in comment mode
-	
-	- User
-		- User Settings
-		- Change User Profile Image
-
-	- RightSideBar
-		- Add suggested communities
-		- Add suggested users
 
 	- Search Page
 		- Search for threads
@@ -341,3 +351,4 @@ Features
 		- Search for threads
 
 - type docs for file structure 
+- Test responsive, accessible, ceo, and performance
