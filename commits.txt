@@ -247,6 +247,15 @@ Create suggested communities and users content | Add user settings
 
 ======================================================================================
 
+Create Pagination component | Add Pagination to [ home, search, communities] pages
+
+- Create Pagination component
+- Add pagination to home page
+- Add pagination to search page
+- Add pagination to communities page
+
+======================================================================================
+
 - Enhancements
 	- Global
 		- Clerk components responsive
@@ -259,7 +268,6 @@ Create suggested communities and users content | Add user settings
 		- Check TODO and any comments in code
 		- Move styles for specific components to there components
 		- Review threads and user actions to populate community
-		- Handle pagination for [HomePage, ProfilePage, SearchPage, CommunitiesPage, CommunityPage]
 		- Image stored at uploadthing quality is very bad
 		- Handle errors in actions
 		- Terminal error with create thread page
@@ -291,6 +299,7 @@ Create suggested communities and users content | Add user settings
 		- Fix ThreadsTab type
 		- Fix getUserThreadsAction type
 		- Add communities to profile page
+		- Add pagination to profile page
 
 - New Features
 	- Thread
@@ -352,3 +361,4 @@ Features
 
 - type docs for file structure 
 - Test responsive, accessible, ceo, and performance
+- Activities must contain likes and replies and share and repost

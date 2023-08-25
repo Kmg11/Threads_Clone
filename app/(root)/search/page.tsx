@@ -2,12 +2,21 @@ import React from "react";
 import { UserCard } from "@/components/cards/UserCard/UserCard";
 import { checkUser } from "@/lib/checkUser";
 import { searchUsersAction } from "@/server/actions/userActions/searchUsers.action";
+import { Pagination } from "@/components/shared/Pagination/Pagination";
+import { ROUTES } from "@/constants";
 
-export default async function SearchPage() {
+interface SearchPageProps {
+	searchParams: { [key: string]: string | undefined };
+}
+
+export default async function SearchPage({ searchParams }: SearchPageProps) {
 	const { user } = await checkUser();
+
+	const currentPageNumber = searchParams?.page ? +searchParams.page : 1;
+
 	const { isNext, users } = await searchUsersAction({
-		page: 1,
-		limit: 20,
+		page: currentPageNumber,
+		limit: 25,
 		userId: user.id,
 		searchString: "",
 		sortBy: "desc",
@@ -35,6 +44,12 @@ export default async function SearchPage() {
 					))
 				)}
 			</div>
+
+			<Pagination
+				path={ROUTES.SEARCH}
+				pageNumber={currentPageNumber}
+				isNext={isNext}
+			/>
 		</section>
 	);
 }

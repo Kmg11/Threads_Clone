@@ -1,10 +1,22 @@
 import { ThreadCard } from "@/components/cards/ThreadCard/ThreadCard";
+import { Pagination } from "@/components/shared/Pagination/Pagination";
+import { ROUTES } from "@/constants";
 import { checkUser } from "@/lib/checkUser";
 import { getThreadsAction } from "@/server/actions/threadActions/getThreads.action";
 
-export default async function HomePage() {
+interface HomePageProps {
+	searchParams: { [key: string]: string | undefined };
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
 	const { user } = await checkUser();
-	const { threads } = await getThreadsAction({ page: 1, limit: 10 });
+
+	const currentPageNumber = searchParams?.page ? +searchParams.page : 1;
+
+	const { threads, isNext } = await getThreadsAction({
+		page: currentPageNumber,
+		limit: 30,
+	});
 
 	return (
 		<>
@@ -30,6 +42,12 @@ export default async function HomePage() {
 					<p className="no-result">No threads found</p>
 				)}
 			</section>
+
+			<Pagination
+				path={ROUTES.HOME}
+				pageNumber={currentPageNumber}
+				isNext={isNext}
+			/>
 		</>
 	);
 }
