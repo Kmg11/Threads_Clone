@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import TopBarStyles from "./TopBar.module.css";
+import { ROUTES } from "@/constants";
 
 export const TopBar = () => {
 	return (
@@ -22,7 +23,7 @@ export const TopBar = () => {
 					}}
 				/>
 
-				<UserButton />
+				<UserButton afterSignOutUrl={ROUTES.AUTH.SIGNIN} />
 			</div>
 		</nav>
 	);

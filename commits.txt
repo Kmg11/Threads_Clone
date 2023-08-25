@@ -256,6 +256,25 @@ Create Pagination component | Add Pagination to [ home, search, communities] pag
 
 ======================================================================================
 
+Styles Enhancements
+
+- Enhance communities page style
+- Remove share and rePost buttons from ThreadCard
+- Move ThreadCard styles from globals to ThreadCard component
+- Move UserCard styles from globals to UserCard component
+- Move Pagination styles from globals to Pagination component
+- Move CommunityCard styles from globals to CommunityCard component
+- Move ActivityCard styles from globals to ActivityCard component
+- Move AccountProfileForm styles from globals to AccountProfileForm component
+- Move CreateCommentForm styles from globals to CreateCommentForm component
+- Handle change route to communities to in UserCard if the type community
+- Fix get user from profile problem
+- Change sign out route
+
+======================================================================================
+
+- Remove community bio and handle add it
+
 - Enhancements
 	- Global
 		- Clerk components responsive
@@ -266,23 +285,21 @@ Create Pagination component | Add Pagination to [ home, search, communities] pag
 		- Create tabs component
 		- Review CommunityCard
 		- Check TODO and any comments in code
-		- Move styles for specific components to there components
 		- Review threads and user actions to populate community
-		- Image stored at uploadthing quality is very bad
-		- Handle errors in actions
-		- Terminal error with create thread page
-		- Move layout styles to there components
-		- Organize shad cn files and theme into folders and collect form components into folder and name must be capitalize
-		- Split use client components into small parts
 		- Check organization settings
-		- Add constants for app name to use seo
 		- Remove ignore type check from next config [ check deployment ]
 		- add community type to populate threads and user
+	
+	- SEO
+		- Add constants for app name to use seo
 		- handle ceo for all pages
+
+	- Structure
+		- Create containers folder and collect all containers into it
+		- Move styles for specific components to there components
 
 	- Styles
 		- Close resize in textarea
-		- increase left and right sidebar scrollbar size
 
 	- Community
 		- Enhance communities page style
@@ -291,6 +308,7 @@ Create Pagination component | Add Pagination to [ home, search, communities] pag
 
 	- Profile page | Community Page
 		- Create Profile component
+		- Remove tagged tab
 		- split lists in profile page and community page into another file
 		- Add empty message for profile and remove count if 0
 		- Fix threads count at profile
@@ -300,14 +318,13 @@ Create Pagination component | Add Pagination to [ home, search, communities] pag
 		- Fix getUserThreadsAction type
 		- Add communities to profile page
 		- Add pagination to profile page
+		- Handle edit profile from profile itself
 
 - New Features
 	- Thread
 		- Delete Thread
 		- Edit Thread
 		- Like/Unlike Thread
-		- Re post Thread
-		- Share Thread
 		- Add Replies count to ThreadCard in comment mode
 
 	- Search Page
@@ -330,7 +347,6 @@ Technologies
 	- Clerk
 	- MongoDB
 	- Mongoose
-	- Express
 	- Node.js
 	- Shadcn
 
@@ -341,11 +357,8 @@ Features
 	- Thread
 		- Create Thread
 		- Delete Thread
-		- Edit Thread
 		- Like/Unlike Thread
-		- Re post Thread
-		- Share Thread
-		- Nested Comments
+		- Nested Comments System
 	- Community
 		- Create Community
 		- Join Community

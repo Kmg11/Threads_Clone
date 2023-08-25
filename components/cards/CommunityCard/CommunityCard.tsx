@@ -18,7 +18,7 @@ function CommunityCard({
 	members,
 }: CommunityCardProps) {
 	return (
-		<article className="community-card">
+		<article className="w-full rounded-lg bg-dark-3 px-4 py-5 md:w-96 xs:w-full">
 			<div className="flex flex-wrap items-center gap-3">
 				<Link href={`/communities/${id}`}>
 					<AppAvatar src={image} width={48} height={48} name={name} />
@@ -36,7 +36,10 @@ function CommunityCard({
 
 			<div className="mt-5 flex flex-wrap items-center justify-between gap-3">
 				<Link href={`/communities/${id}`}>
-					<Button size="sm" className="community-card_btn">
+					<Button
+						size="sm"
+						className="rounded-lg bg-primary-500 px-5 py-1.5 text-small-regular !text-light-1"
+					>
 						View
 					</Button>
 				</Link>

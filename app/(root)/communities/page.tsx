@@ -29,7 +29,7 @@ export default async function CommunitiesPage({
 
 			{/* Search Bar */}
 
-			<div className="mt-14 flex flex-wrap gap-4">
+			<div className="mt-14 flex flex-wrap gap-4 justify-center">
 				{communities.length === 0 ? (
 					<p className="no-result">No users</p>
 				) : (

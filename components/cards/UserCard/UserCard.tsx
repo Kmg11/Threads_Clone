@@ -1,11 +1,12 @@
 "use client";
 
+import React from "react";
 import { AppAvatar } from "@/components/shared/AppAvatar/AppAvatar";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants";
 import { UserType } from "@/types";
 import { useRouter } from "next/navigation";
-import React from "react";
+import UserCardStyles from "./UserCard.module.css";
 
 interface UserCardProps {
 	id: UserType["id"];
@@ -23,10 +24,19 @@ export const UserCard = ({
 	type,
 }: UserCardProps) => {
 	const router = useRouter();
+	const isCommunity = type === "community";
+
+	const handleGoToProfile = () => {
+		if (isCommunity) {
+			router.push(ROUTES.COMMUNITY(id));
+		} else {
+			router.push(ROUTES.PROFILE.USER_PROFILE(id));
+		}
+	};
 
 	return (
-		<article className="user-card">
-			<div className="user-card_avatar">
+		<article className={UserCardStyles.UserCard}>
+			<div className={UserCardStyles.UserCardAvatar}>
 				<AppAvatar src={image} width={48} height={48} name={name} />
 
 				<div className="flex-1 text-ellipsis">
@@ -36,8 +46,8 @@ export const UserCard = ({
 			</div>
 
 			<Button
-				className="user-card_btn"
-				onClick={() => router.push(ROUTES.PROFILE.USER_PROFILE(id))}
+				className={UserCardStyles.UserCardBtn}
+				onClick={handleGoToProfile}
 			>
 				View
 			</Button>

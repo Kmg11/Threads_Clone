@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import React from "react";
 import { Control, FieldName } from "react-hook-form";
 import { UserSchemaType } from "../accountProfile.schema";
+import AccountProfileFormStyles from "../AccountProfileForm.module.css";
 
 interface AccountProfileFormFieldProps {
 	control: Control<UserSchemaType>;
@@ -38,13 +39,13 @@ export const AccountProfileFormField = ({
 						{variant === "text" ? (
 							<Input
 								type="text"
-								className="account-form_input no-focus"
+								className={`${AccountProfileFormStyles.AccountForm_Input} no-focus"`}
 								{...field}
 							/>
 						) : (
 							<Textarea
 								rows={2}
-								className="account-form_input no-focus"
+								className={`${AccountProfileFormStyles.AccountForm_Input} no-focus"`}
 								{...field}
 							/>
 						)}

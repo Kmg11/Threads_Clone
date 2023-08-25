@@ -4,6 +4,9 @@ import { ProfileHeader } from "@/components/shared/ProfileHeader/ProfileHeader";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ThreadsTab } from "@/components/shared/ThreadsTab/ThreadsTab";
 import { checkUser } from "@/lib/checkUser";
+import { getUserAction } from "@/server/actions/userActions/getUser.action";
+import { redirect } from "next/navigation";
+import { ROUTES } from "@/constants";
 
 enum ProfileTabs {
 	THREADS = "threads",
@@ -24,7 +27,9 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-	const { user, userInfo } = await checkUser();
+	const { user } = await checkUser();
+	const userInfo = await getUserAction(params.userId);
+	if (!userInfo) return redirect(ROUTES.HOME);
 
 	return (
 		<section>

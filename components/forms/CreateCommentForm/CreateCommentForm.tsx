@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useCreateCommentForm } from "./useCreateCommentForm";
 import { AppAvatar } from "@/components/shared/AppAvatar/AppAvatar";
+import CreateCommentFormStyles from "./CreateCommentForm.module.css";
 
 export interface CreateCommentFormProps {
 	threadId: Types.ObjectId;
@@ -32,7 +33,10 @@ export const CreateCommentForm = ({
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="comment-form">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className={CreateCommentFormStyles.CommentForm}
+			>
 				<FormField
 					control={form.control}
 					name="thread"
@@ -61,7 +65,10 @@ export const CreateCommentForm = ({
 					)}
 				/>
 
-				<Button type="submit" className="comment-form_btn">
+				<Button
+					type="submit"
+					className={CreateCommentFormStyles.CommentFormBtn}
+				>
 					Reply
 				</Button>
 			</form>

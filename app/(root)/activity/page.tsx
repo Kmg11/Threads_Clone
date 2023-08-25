@@ -20,7 +20,7 @@ export default async function ActivityPage() {
 							key={activity._id.toString()}
 							href={ROUTES.THREAD(activity.parentId || "")}
 						>
-							<article className="activity-card">
+							<article className="flex items-center gap-2 rounded-md bg-dark-2 px-7 py-4">
 								<AppAvatar
 									src={activity.author.image}
 									width={20}

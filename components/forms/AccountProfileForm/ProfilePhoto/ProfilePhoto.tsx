@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Control, set } from "react-hook-form";
 import { UserSchemaType } from "../accountProfile.schema";
 import { AppAvatar } from "@/components/shared/AppAvatar/AppAvatar";
+import AccountProfileFormStyles from "../AccountProfileForm.module.css";
 
 interface ProfilePhotoProps {
 	control: Control<UserSchemaType>;
@@ -48,7 +49,9 @@ export const ProfilePhoto = ({ control, setFiles }: ProfilePhotoProps) => {
 			name="profile_photo"
 			render={({ field }) => (
 				<FormItem className="flex items-center gap-4">
-					<FormLabel className="account-form_image-label">
+					<FormLabel
+						className={AccountProfileFormStyles.AccountForm_ImageLabel}
+					>
 						{field.value ? (
 							<AppAvatar src={field.value} width={96} height={96} />
 						) : (
@@ -61,7 +64,7 @@ export const ProfilePhoto = ({ control, setFiles }: ProfilePhotoProps) => {
 							type="file"
 							accept="image/*"
 							placeholder="Upload a photo"
-							className="account-form_image-input"
+							className={AccountProfileFormStyles.AccountForm_ImageInput}
 							onChange={(e) => handleImage(e, field.onChange)}
 						/>
 					</FormControl>

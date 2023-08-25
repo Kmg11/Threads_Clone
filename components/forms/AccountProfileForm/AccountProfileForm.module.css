@@ -1,0 +1,11 @@
+.AccountForm_ImageLabel {
+	@apply flex h-24 w-24 items-center justify-center rounded-full bg-dark-4 !important;
+}
+
+.AccountForm_ImageInput {
+	@apply cursor-pointer border-none bg-transparent outline-none file:text-blue !important;
+}
+
+.AccountForm_Input {
+	@apply border border-dark-4 bg-dark-3 text-light-1 !important;
+}
