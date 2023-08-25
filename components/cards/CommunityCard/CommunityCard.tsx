@@ -1,25 +1,27 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { AppAvatar } from "@/components/shared/AppAvatar/AppAvatar";
+import { AuthorType, CommunityType } from "@/types";
 
-interface Props {
-	id: string;
-	name: string;
-	username: string;
-	imgUrl: string;
-	bio: string;
-	members: {
-		image: string;
-		name: string;
-	}[];
-}
+interface CommunityCardProps
+	extends Pick<
+		CommunityType,
+		"id" | "name" | "username" | "image" | "bio" | "members"
+	> {}
 
-function CommunityCard({ id, name, username, imgUrl, bio, members }: Props) {
+function CommunityCard({
+	id,
+	name,
+	username,
+	image,
+	bio,
+	members,
+}: CommunityCardProps) {
 	return (
 		<article className="community-card">
 			<div className="flex flex-wrap items-center gap-3">
 				<Link href={`/communities/${id}`}>
-					<AppAvatar src={imgUrl} width={48} height={48} name={name} />
+					<AppAvatar src={image} width={48} height={48} name={name} />
 				</Link>
 
 				<div>

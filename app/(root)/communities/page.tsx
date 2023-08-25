@@ -1,12 +1,12 @@
 import CommunityCard from "@/components/cards/CommunityCard/CommunityCard";
 import { checkUser } from "@/lib/checkUser";
-import { fetchCommunities } from "@/server/actions/community/community.actions";
+import { getCommunitiesAction } from "@/server/actions/community/getCommunities.action";
 import React from "react";
 
 export default async function CommunitiesPage() {
 	await checkUser();
 
-	const { isNext, communities } = await fetchCommunities({
+	const { isNext, communities } = await getCommunitiesAction({
 		pageNumber: 1,
 		pageSize: 20,
 		searchString: "",
@@ -19,7 +19,7 @@ export default async function CommunitiesPage() {
 
 			{/* Search Bar */}
 
-			<div className="mt-14 flex flex-col gap-9">
+			<div className="mt-14 flex flex-wrap gap-4">
 				{communities.length === 0 ? (
 					<p className="no-result">No users</p>
 				) : (
@@ -29,7 +29,7 @@ export default async function CommunitiesPage() {
 							id={community.id}
 							name={community.name}
 							username={community.username}
-							imgUrl={community.image}
+							image={community.image}
 							bio={community.bio}
 							members={community.members}
 						/>

@@ -219,12 +219,33 @@ Enhancements on user model and onboarding page
 
 ======================================================================================
 
-- Create tabs component
-- Review CommunityCard
-- Check TODO and any comments in code
+Enhance on Community actions and functionality
+
+- CommunityModel
+	- Add types
+	- Add timestamp
+	- Create CommunityDocumentType, CommunityType and PopulateCommunityType
+- Create createCommunityAction & Enhance webhook create organization
+- Create getCommunityDetailsAction
+- Create getCommunityThreadsAction
+- Create getCommunitiesAction
+- Create removeMemberFromCommunityAction
+- Create deleteCommunityAction
+- Remove // @ts-ignore from webhook/clerk
+
+======================================================================================
+
+- Enhance communities page style
+- there is a time between create community and add to my database cause a problem
+	- Check if no community add to database and there is a community id send error
+- Check all community actions after deploy
 
 - Enhancements
 	- Global
+		- Create tabs component
+		- Review CommunityCard
+		- Check TODO and any comments in code
+		- Move styles for specific components to there components
 		- Review threads and user actions to populate community
 		- Handle pagination for [HomePage, ProfilePage, SearchPage, CommunitiesPage, CommunityPage]
 		- Image stored at uploadthing quality is very bad
@@ -241,20 +262,6 @@ Enhancements on user model and onboarding page
 	- Styles
 		- Close resize in textarea
 		- increase left and right sidebar scrollbar size
-
-	- Community
-		- Create CommunityType
-		- community actions
-			- Split into small files
-			- Review functionality
-			- Add types
-			- Rename actions
-		- Fix type any in community members
-		- Fix When create community page reload
-		- there is a time between create community and add to my database cause a problem
-			- Check if no community add to database and there is a community id send error
-		- fix pull line in community actions
-		- Remove // @ts-ignore from webhook/clerk
 
 	- Profile page | Community Page
 		- Create Profile component
@@ -332,3 +339,5 @@ Features
 		- Search for users
 		- Search for communities
 		- Search for threads
+
+- type docs for file structure 

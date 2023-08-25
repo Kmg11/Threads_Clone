@@ -8,8 +8,8 @@ export interface UserDocumentType {
 	image?: string;
 	bio?: string;
 	onboarded: boolean;
-	threads: string[];
-	communities: string[];
+	threads: mongoose.Types.ObjectId[];
+	communities: mongoose.Types.ObjectId[];
 	createdAt: string;
 	updatedAt: string;
 }

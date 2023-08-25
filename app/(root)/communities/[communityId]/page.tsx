@@ -3,9 +3,11 @@ import Image from "next/image";
 import { ProfileHeader } from "@/components/shared/ProfileHeader/ProfileHeader";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ThreadsTab } from "@/components/shared/ThreadsTab/ThreadsTab";
-import { fetchCommunityDetails } from "@/server/actions/community/community.actions";
 import { UserCard } from "@/components/cards/UserCard/UserCard";
 import { checkUser } from "@/lib/checkUser";
+import { redirect } from "next/navigation";
+import { ROUTES } from "@/constants";
+import { getCommunityDetailsAction } from "@/server/actions/community/getCommunityDetails.action";
 
 enum CommunityTabs {
 	THREADS = "threads",
@@ -35,7 +37,8 @@ interface CommunityPageProps {
 
 export default async function CommunityPage({ params }: CommunityPageProps) {
 	const { user } = await checkUser();
-	const communityDetails = await fetchCommunityDetails(params.communityId);
+	const communityDetails = await getCommunityDetailsAction(params.communityId);
+	if (!communityDetails) return redirect(ROUTES.HOME);
 
 	return (
 		<section>
