@@ -29,20 +29,23 @@ export const ThreadsTab = async ({
 
 	return (
 		<section className="mt-9 flex flex-col gap-10">
-			{threads.map((thread: any) => (
-				<ThreadCard
-					key={`${thread._id}`}
-					currentUserId={currentUserId}
-					_id={thread._id}
-					text={thread.text}
-					author={thread.author}
-					community={thread.community}
-					parentId={thread.parentId}
-					createdAt={thread.createdAt}
-					updatedAt={thread.updatedAt}
-					comments={thread.comments}
-				/>
-			))}
+			{threads.length > 0 &&
+				threads.map((thread: any) => (
+					<ThreadCard
+						key={`${thread._id}`}
+						currentUserId={currentUserId}
+						_id={thread._id}
+						text={thread.text}
+						author={thread.author}
+						community={thread.community}
+						parentId={thread.parentId}
+						createdAt={thread.createdAt}
+						updatedAt={thread.updatedAt}
+						comments={thread.comments}
+					/>
+				))}
+
+			{threads.length === 0 && <p className="no-result">No threads yet</p>}
 		</section>
 	);
 };

@@ -291,8 +291,26 @@ Create containers folder to Enhance structure
 
 ======================================================================================
 
+ProfilePageContainer Enhancements | CommunityPageContainer Enhancements
+
+- Remove Tagged tab
+- Split profileTabs to another file
+- Split communityTabs to another file
+- Add empty message to ThreadsTab component
+- Remove threads count if there is no threads
+- Decrease profile page space between bio and threads section
+
+======================================================================================
+
+- Profile page | Community Page
+	- Handle edit profile from profile itself
+	- Handle replies tab
+	- Add pagination to profile page
+	- handle community requests tab
+
 - Enhancements
 	- Global
+		- test all communities functionality
 		- Add pagination to activity page
 		- Add pagination to comments in thread page
 		- Remove community bio and handle add it
@@ -312,23 +330,8 @@ Create containers folder to Enhance structure
 		- handle ceo for all pages
 
 	- Community
-		- Enhance communities page style
 		- there is a time between create community and add to my database cause a problem
 			- Check if no community add to database and there is a community id send error
-
-	- Profile page | Community Page
-		- Create Profile component
-		- Remove tagged tab
-		- split lists in profile page and community page into another file
-		- Add empty message for profile and remove count if 0
-		- Fix threads count at profile
-		- Organize profile page components
-		- Decrease profile page space between bio and next section
-		- Fix ThreadsTab type
-		- Fix getUserThreadsAction type
-		- Add communities to profile page
-		- Add pagination to profile page
-		- Handle edit profile from profile itself
 
 - New Features
 	- Thread
