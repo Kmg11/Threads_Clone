@@ -302,9 +302,15 @@ ProfilePageContainer Enhancements | CommunityPageContainer Enhancements
 
 ======================================================================================
 
+Handle profile replies tab
+
+- Create getUserRepliesThreadsAction
+- Handle replies tab in profile page
+
+======================================================================================
+
 - Profile page | Community Page
 	- Handle edit profile from profile itself
-	- Handle replies tab
 	- Add pagination to profile page
 	- handle community requests tab
 
@@ -345,7 +351,6 @@ ProfilePageContainer Enhancements | CommunityPageContainer Enhancements
 
 	- Global
 		- Add eslint and prettier rules and scripts
-		- Enhance seo use coder one ceo video
 		- Add forgot password and reset password
 
 Technologies

@@ -65,7 +65,9 @@ export const ProfilePageContainer = async ({
 						<ThreadsTab
 							currentUserId={currentUserId}
 							accountId={userInfo._id}
-							accountType="user"
+							accountType={
+								tab.value === ProfileTabs.THREADS ? "user" : "userReplies"
+							}
 						/>
 					</TabsContent>
 				))}
