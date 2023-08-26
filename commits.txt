@@ -273,10 +273,29 @@ Styles Enhancements
 
 ======================================================================================
 
-- Remove community bio and handle add it
+Create containers folder to Enhance structure
+
+- Create containers folder
+- Create containers auth folder
+- Create containers root folder
+- Create SearchParamsType
+- Create HomePageContainer
+- Create SearchPageContainer
+- Create ActivityPageContainer
+- Create ThreadPageContainer
+- Create CommunitiesPageContainer
+- Create CommunityPageContainer
+- Create CreateThreadPageContainer
+- Create ProfilePageContainer
+- Create OnboardingPageContainer
+
+======================================================================================
 
 - Enhancements
 	- Global
+		- Add pagination to activity page
+		- Add pagination to comments in thread page
+		- Remove community bio and handle add it
 		- Clerk components responsive
 		- Listen to user changes to change user state
 			- change [ image, name, bio, username ]
@@ -284,22 +303,13 @@ Styles Enhancements
 			- All settings
 		- Create tabs component
 		- Review CommunityCard
-		- Check TODO and any comments in code
 		- Review threads and user actions to populate community
 		- Check organization settings
-		- Remove ignore type check from next config [ check deployment ]
 		- add community type to populate threads and user
 	
 	- SEO
 		- Add constants for app name to use seo
 		- handle ceo for all pages
-
-	- Structure
-		- Create containers folder and collect all containers into it
-		- Move styles for specific components to there components
-
-	- Styles
-		- Close resize in textarea
 
 	- Community
 		- Enhance communities page style
@@ -323,19 +333,14 @@ Styles Enhancements
 - New Features
 	- Thread
 		- Delete Thread
-		- Edit Thread
 		- Like/Unlike Thread
+		- Add likes count
 		- Add Replies count to ThreadCard in comment mode
-
-	- Search Page
-		- Search for threads
-		- Add SearchBar
 		
-	- Communities Page
+	- Search Page / Communities Page
 		- Add SearchBar
 
 	- Global
-		- Add localization
 		- Add eslint and prettier rules and scripts
 		- Enhance seo use coder one ceo video
 		- Add forgot password and reset password
@@ -370,7 +375,6 @@ Features
 	- Search
 		- Search for users
 		- Search for communities
-		- Search for threads
 
 - type docs for file structure 
 - Test responsive, accessible, ceo, and performance

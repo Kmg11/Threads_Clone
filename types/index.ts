@@ -5,3 +5,4 @@ export type {
 	CommunityDocumentType,
 	PopulateCommunityType,
 } from "./community.type";
+export type { SearchParamsType } from "./global.type";
