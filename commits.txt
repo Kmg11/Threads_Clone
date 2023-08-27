@@ -309,25 +309,32 @@ Handle profile replies tab
 
 ======================================================================================
 
+Create SearchBar component | Add search functionality to search page and communities page
+
+- Remove community requests tab
+- getActivitiesAction
+	- Limit Activities to 30
+	- Sort Activities by createdAt
+- Create SearchBar component
+- Add search functionality to search page
+- Add search functionality to communities page
+- Move search input styles from globals to SearchBar component
+
+======================================================================================
+
 - Profile page | Community Page
 	- Handle edit profile from profile itself
 	- Add pagination to profile page
-	- handle community requests tab
 
 - Enhancements
 	- Global
 		- test all communities functionality
-		- Add pagination to activity page
-		- Add pagination to comments in thread page
 		- Remove community bio and handle add it
 		- Clerk components responsive
 		- Listen to user changes to change user state
 			- change [ image, name, bio, username ]
 			- Delete user
 			- All settings
-		- Create tabs component
-		- Review CommunityCard
-		- Review threads and user actions to populate community
 		- Check organization settings
 		- add community type to populate threads and user
 	
@@ -345,13 +352,10 @@ Handle profile replies tab
 		- Like/Unlike Thread
 		- Add likes count
 		- Add Replies count to ThreadCard in comment mode
-		
-	- Search Page / Communities Page
-		- Add SearchBar
+		- Add pagination to comments in thread page
 
 	- Global
 		- Add eslint and prettier rules and scripts
-		- Add forgot password and reset password
 
 Technologies
 	- Next.js

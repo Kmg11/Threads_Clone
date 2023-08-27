@@ -5,6 +5,7 @@ import { Pagination } from "@/components/shared/Pagination/Pagination";
 import { ROUTES } from "@/constants";
 import { SearchParamsType } from "@/types";
 import { User } from "@clerk/nextjs/server";
+import { SearchBar } from "@/components/shared/SearchBar/SearchBar";
 
 interface SearchPageContainerProps extends SearchParamsType {
 	currentUserId: User["id"];
@@ -20,7 +21,7 @@ export const SearchPageContainer = async ({
 		page: currentPageNumber,
 		limit: 25,
 		userId: currentUserId,
-		searchString: "",
+		searchString: searchParams.search,
 		sortBy: "desc",
 	});
 
@@ -28,7 +29,7 @@ export const SearchPageContainer = async ({
 		<section>
 			<h1 className="head-text mb-10">Search</h1>
 
-			{/* Search Bar */}
+			<SearchBar routeType="search" />
 
 			<div className="mt-14 flex flex-col gap-9">
 				{users.length === 0 ? (

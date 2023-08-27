@@ -85,17 +85,6 @@ export const CommunityPageContainer = async ({
 						))}
 					</section>
 				</TabsContent>
-
-				<TabsContent
-					value={CommunityTabs.REQUESTS}
-					className="w-full text-light-1"
-				>
-					<ThreadsTab
-						currentUserId={currentUserId}
-						accountId={communityDetails._id}
-						accountType="community"
-					/>
-				</TabsContent>
 			</Tabs>
 		</section>
 	);

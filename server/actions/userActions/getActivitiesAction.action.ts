@@ -20,11 +20,14 @@ export const getActivitiesAction = async (userId: UserType["_id"]) => {
 		>({
 			_id: { $in: commentsThreadsIds },
 			author: { $ne: userId },
-		}).populate({
-			path: "author",
-			model: ModelsNames.User,
-			select: "_id name username image",
-		});
+		})
+			.sort({ createdAt: -1 })
+			.limit(30)
+			.populate({
+				path: "author",
+				model: ModelsNames.User,
+				select: "_id name username image",
+			});
 
 		return { activities: replies };
 	} catch (error: any) {

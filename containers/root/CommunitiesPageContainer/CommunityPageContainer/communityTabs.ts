@@ -1,7 +1,6 @@
 export enum CommunityTabs {
 	THREADS = "threads",
 	MEMBERS = "members",
-	REQUESTS = "requests",
 }
 
 export const communityTabs = [
@@ -10,10 +9,5 @@ export const communityTabs = [
 		value: CommunityTabs.MEMBERS,
 		label: "Members",
 		icon: "/assets/members.svg",
-	},
-	{
-		value: CommunityTabs.REQUESTS,
-		label: "Requests",
-		icon: "/assets/request.svg",
 	},
 ];
