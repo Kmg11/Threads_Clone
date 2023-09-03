@@ -332,9 +332,14 @@ Handle delete thread | Show replies count
 
 ======================================================================================
 
-- Remove double images
-- Split ThreadCard into small component
+Split ThreadCard into small components
 
+- Create RepliesCount component
+- Create createdAt component
+
+======================================================================================
+
+- Remove double images
 - When type comment on another tab not show in the other tab [ revalidate path when add comment ]
 
 - Enhancements

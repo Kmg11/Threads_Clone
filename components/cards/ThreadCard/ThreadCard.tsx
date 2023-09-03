@@ -1,10 +1,11 @@
 import { AppAvatar } from "@/components/shared/AppAvatar/AppAvatar";
 import { ROUTES } from "@/constants";
-import { formatDateString } from "@/lib";
 import { ThreadType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { DeleteThread } from "./DeleteThread/DeleteThread";
+import { RepliesCount } from "./RepliesCount/RepliesCount";
+import { Community } from "./Community/Community";
 
 interface ThreadCardProps extends ThreadType {
 	currentUserId: string;
@@ -22,11 +23,6 @@ export const ThreadCard = ({
 	parentId,
 	isComment,
 }: ThreadCardProps) => {
-	const uniqueComments = comments.filter(
-		(comment, index, self) =>
-			index === self.findIndex((c) => c.author.id === comment.author.id)
-	);
-
 	return (
 		<article
 			className={`
@@ -95,42 +91,11 @@ export const ThreadCard = ({
 			</div>
 
 			{!isComment && comments.length > 0 && (
-				<div className="ml-1 mt-3 flex items-center gap-2">
-					{uniqueComments.slice(0, 2).map((comment, index) => (
-						<AppAvatar
-							key={index}
-							src={comment.author.image}
-							width={24}
-							height={24}
-							className={`${index !== 0 && "-ml-5"}`}
-						/>
-					))}
-
-					<Link href={ROUTES.THREAD(_id)}>
-						<p className="mt-1 text-subtle-medium text-gray-1">
-							{comments.length} repl{comments.length > 1 ? "ies" : "y"}
-						</p>
-					</Link>
-				</div>
+				<RepliesCount _id={_id} comments={comments} />
 			)}
 
 			{!isComment && community && (
-				<Link
-					href={ROUTES.COMMUNITY(community.id)}
-					className="mt-5 flex items-center"
-				>
-					<p className="text-subtle-medium text-gray-1">
-						{formatDateString(createdAt)} - {community.name} Community
-					</p>
-
-					<AppAvatar
-						src={community.image}
-						width={14}
-						height={14}
-						name={community.name}
-						className="ms-1"
-					/>
-				</Link>
+				<Community community={community} createdAt={createdAt} />
 			)}
 		</article>
 	);
