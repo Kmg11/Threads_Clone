@@ -50,12 +50,12 @@ export async function getCommunitiesAction({
 				{
 					path: "members",
 					model: UserModel,
-					select: "_id username name image",
+					select: "_id id username name image",
 				},
 				{
 					path: "createdBy",
 					model: UserModel,
-					select: "_id username name image",
+					select: "_id id username name image",
 				},
 			]);
 

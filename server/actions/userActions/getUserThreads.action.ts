@@ -23,7 +23,7 @@ export async function getUserThreadsAction(userId: UserType["_id"]): Promise<{
 				{
 					path: "author",
 					model: ModelsNames.User,
-					select: "_id name username image",
+					select: "_id id name username image",
 				},
 				{
 					path: "comments",
@@ -31,7 +31,7 @@ export async function getUserThreadsAction(userId: UserType["_id"]): Promise<{
 					populate: {
 						path: "author",
 						model: ModelsNames.User,
-						select: "_id name username image",
+						select: "_id id name username image",
 					},
 				},
 			],

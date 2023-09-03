@@ -322,21 +322,28 @@ Create SearchBar component | Add search functionality to search page and communi
 
 ======================================================================================
 
-- Profile page | Community Page
-	- Handle edit profile from profile itself
-	- Add pagination to profile page
+Handle delete thread | Show replies count
+
+- Remove heart icon from ThreadCard
+- Create DeleteThread component
+- Create deleteThreadAction
+- Add DeleteThread component to ThreadCard
+- Add Replies count to ThreadCard in comment mode
+
+======================================================================================
+
+- Remove double images
+- Split ThreadCard into small component
+
+- When type comment on another tab not show in the other tab [ revalidate path when add comment ]
 
 - Enhancements
 	- Global
-		- test all communities functionality
-		- Remove community bio and handle add it
 		- Clerk components responsive
 		- Listen to user changes to change user state
 			- change [ image, name, bio, username ]
 			- Delete user
 			- All settings
-		- Check organization settings
-		- add community type to populate threads and user
 	
 	- SEO
 		- Add constants for app name to use seo
@@ -345,22 +352,20 @@ Create SearchBar component | Add search functionality to search page and communi
 	- Community
 		- there is a time between create community and add to my database cause a problem
 			- Check if no community add to database and there is a community id send error
+		- test all communities functionality
+		- Remove community bio and handle add it
+		- Check organization settings
+		- add community type to populate threads and user
 
-- New Features
-	- Thread
-		- Delete Thread
-		- Like/Unlike Thread
-		- Add likes count
-		- Add Replies count to ThreadCard in comment mode
-		- Add pagination to comments in thread page
-
-	- Global
-		- Add eslint and prettier rules and scripts
+	- Profile page | Community Page
+		- Handle edit profile from profile itself
+		- Add pagination to profile page
 
 Technologies
 	- Next.js
 	- TypeScript
 	- TailwindCSS
+	- Css Modules
 	- Clerk
 	- MongoDB
 	- Mongoose
@@ -368,9 +373,9 @@ Technologies
 	- Shadcn
 
 Features
-	- User
+	- Auth
+		- Signin
 		- Signup
-		- Login
 	- Thread
 		- Create Thread
 		- Delete Thread
@@ -388,6 +393,4 @@ Features
 		- Search for users
 		- Search for communities
 
-- type docs for file structure 
 - Test responsive, accessible, ceo, and performance
-- Activities must contain likes and replies and share and repost

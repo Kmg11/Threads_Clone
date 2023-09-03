@@ -26,7 +26,7 @@ export const getActivitiesAction = async (userId: UserType["_id"]) => {
 			.populate({
 				path: "author",
 				model: ModelsNames.User,
-				select: "_id name username image",
+				select: "_id id name username image",
 			});
 
 		return { activities: replies };

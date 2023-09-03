@@ -29,7 +29,7 @@ export async function getThreadsAction({
 			.populate({
 				path: "author",
 				model: ModelsNames.User,
-				select: "_id name parentId username image",
+				select: "_id id name username image",
 			})
 			.populate({
 				path: "community",
@@ -40,7 +40,7 @@ export async function getThreadsAction({
 				populate: {
 					path: "author",
 					model: ModelsNames.User,
-					select: "_id name parentId username image",
+					select: "_id id name username image",
 				},
 			});
 

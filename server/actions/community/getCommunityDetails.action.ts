@@ -14,12 +14,12 @@ export async function getCommunityDetailsAction(id: CommunityType["id"]) {
 			{
 				path: "createdBy",
 				model: UserModel,
-				select: "name username image _id",
+				select: "name username image _id id",
 			},
 			{
 				path: "members",
 				model: UserModel,
-				select: "name username image _id",
+				select: "name username image _id id",
 			},
 		]);
 

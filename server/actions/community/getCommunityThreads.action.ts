@@ -23,7 +23,7 @@ export async function getCommunityThreadsAction(_id: CommunityType["_id"]) {
 					{
 						path: "author",
 						model: UserModel,
-						select: "_id name username image",
+						select: "_id id name username image",
 					},
 					{
 						path: "comments",
@@ -31,7 +31,7 @@ export async function getCommunityThreadsAction(_id: CommunityType["_id"]) {
 						populate: {
 							path: "author",
 							model: UserModel,
-							select: "_id name username image",
+							select: "_id id name username image",
 						},
 					},
 				],

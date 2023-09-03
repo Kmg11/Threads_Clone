@@ -15,7 +15,7 @@ export async function getUserRepliesThreadsAction(userId: UserType["_id"]) {
 			.populate({
 				path: "author",
 				model: ModelsNames.User,
-				select: "_id name parentId username image",
+				select: "_id id name username image",
 			})
 			.populate({
 				path: "community",
@@ -26,7 +26,7 @@ export async function getUserRepliesThreadsAction(userId: UserType["_id"]) {
 				populate: {
 					path: "author",
 					model: ModelsNames.User,
-					select: "_id name parentId username image",
+					select: "_id id name username image",
 				},
 			});
 

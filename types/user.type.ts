@@ -16,4 +16,7 @@ export interface UserDocumentType {
 
 export interface UserType extends UserDocumentType {}
 
-export type AuthorType = Pick<UserType, "_id" | "image" | "name" | "username">;
+export type AuthorType = Pick<
+	UserType,
+	"_id" | "id" | "image" | "name" | "username"
+>;

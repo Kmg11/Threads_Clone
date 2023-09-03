@@ -13,7 +13,7 @@ export async function getThreadAction(
 			.populate({
 				path: "author",
 				model: ModelsNames.User,
-				select: "_id name parentId username image",
+				select: "_id id name username image",
 			})
 			.populate({
 				path: "community",
@@ -26,7 +26,7 @@ export async function getThreadAction(
 					{
 						path: "author",
 						model: ModelsNames.User,
-						select: "_id name parentId username image",
+						select: "_id id name username image",
 					},
 					{
 						path: "comments",
@@ -34,7 +34,7 @@ export async function getThreadAction(
 						populate: {
 							path: "author",
 							model: ModelsNames.User,
-							select: "_id name parentId username image",
+							select: "_id id name username image",
 						},
 					},
 				],

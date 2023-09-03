@@ -4,6 +4,7 @@ import { formatDateString } from "@/lib";
 import { ThreadType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import { DeleteThread } from "./DeleteThread/DeleteThread";
 
 interface ThreadCardProps extends ThreadType {
 	currentUserId: string;
@@ -18,8 +19,14 @@ export const ThreadCard = ({
 	comments,
 	community,
 	createdAt,
+	parentId,
 	isComment,
 }: ThreadCardProps) => {
+	const uniqueComments = comments.filter(
+		(comment, index, self) =>
+			index === self.findIndex((c) => c.author.id === comment.author.id)
+	);
+
 	return (
 		<article
 			className={`
@@ -56,14 +63,6 @@ export const ThreadCard = ({
 
 						<div className={`mt-5 flex flex-col gap-3 ${isComment && "mb-10"}`}>
 							<div className="flex gap-3.5">
-								<Image
-									src="/assets/heart-gray.svg"
-									alt="heart"
-									width={24}
-									height={24}
-									className="cursor-pointer object-contain"
-								/>
-
 								<Link href={ROUTES.THREAD(_id)}>
 									<Image
 										src="/assets/reply.svg"
@@ -86,9 +85,34 @@ export const ThreadCard = ({
 					</div>
 				</div>
 
-				{/* TODO: Delete Thread */}
-				{/* TODO: Show replies count */}
+				<DeleteThread
+					threadId={_id}
+					currentUserId={currentUserId}
+					authorId={author.id}
+					parentId={parentId}
+					isComment={isComment}
+				/>
 			</div>
+
+			{!isComment && comments.length > 0 && (
+				<div className="ml-1 mt-3 flex items-center gap-2">
+					{uniqueComments.slice(0, 2).map((comment, index) => (
+						<AppAvatar
+							key={index}
+							src={comment.author.image}
+							width={24}
+							height={24}
+							className={`${index !== 0 && "-ml-5"}`}
+						/>
+					))}
+
+					<Link href={ROUTES.THREAD(_id)}>
+						<p className="mt-1 text-subtle-medium text-gray-1">
+							{comments.length} repl{comments.length > 1 ? "ies" : "y"}
+						</p>
+					</Link>
+				</div>
+			)}
 
 			{!isComment && community && (
 				<Link
