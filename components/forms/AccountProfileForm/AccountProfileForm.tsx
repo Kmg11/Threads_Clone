@@ -7,13 +7,21 @@ import { ProfilePhoto } from "./ProfilePhoto/ProfilePhoto";
 import { AccountProfileFormField } from "./AccountProfileFormField/AccountProfileFormField";
 import { useAccountProfileForm } from "./useAccountProfileForm";
 import { UserType } from "@/types";
+import { User } from "@clerk/nextjs/server";
 
 export interface AccountProfileFormProps {
-	user: Pick<UserType, "id" | "username" | "name" | "bio" | "image">;
+	clerkUser: User;
+	dbUser: UserType | null;
 }
 
-export const AccountProfileForm = ({ user }: AccountProfileFormProps) => {
-	const { form, onSubmit, setFiles } = useAccountProfileForm({ user });
+export const AccountProfileForm = ({
+	clerkUser,
+	dbUser,
+}: AccountProfileFormProps) => {
+	const { form, onSubmit, setFiles } = useAccountProfileForm({
+		clerkUser,
+		dbUser,
+	});
 
 	return (
 		<Form {...form}>

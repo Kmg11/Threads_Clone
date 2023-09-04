@@ -6,7 +6,7 @@ interface ThreadPageProps {
 }
 
 export default async function ThreadPage({ params }: ThreadPageProps) {
-	const { userInfo } = await checkUser();
+	const { dbUser } = await checkUser();
 
-	return <ThreadPageContainer threadId={params.threadId} userInfo={userInfo} />;
+	return <ThreadPageContainer threadId={params.threadId} userInfo={dbUser} />;
 }

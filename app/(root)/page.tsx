@@ -5,9 +5,12 @@ import { SearchParamsType } from "@/types";
 interface HomePageProps extends SearchParamsType {}
 
 export default async function HomePage({ searchParams }: HomePageProps) {
-	const { user } = await checkUser();
+	const { clerkUser } = await checkUser();
 
 	return (
-		<HomePageContainer searchParams={searchParams} currentUserId={user.id} />
+		<HomePageContainer
+			searchParams={searchParams}
+			currentUserId={clerkUser.id}
+		/>
 	);
 }

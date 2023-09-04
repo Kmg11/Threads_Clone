@@ -3,7 +3,7 @@ import { checkUser } from "@/lib/checkUser";
 import { ActivityPageContainer } from "@/containers/root/ActivityPageContainer/ActivityPageContainer";
 
 export default async function ActivityPage() {
-	const { userInfo } = await checkUser();
+	const { dbUser } = await checkUser();
 
-	return <ActivityPageContainer userInfo={userInfo} />;
+	return <ActivityPageContainer userInfo={dbUser} />;
 }

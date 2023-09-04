@@ -6,9 +6,12 @@ import { SearchPageContainer } from "@/containers/root/SearchPageContainer/Searc
 interface SearchPageProps extends SearchParamsType {}
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-	const { user } = await checkUser();
+	const { clerkUser } = await checkUser();
 
 	return (
-		<SearchPageContainer searchParams={searchParams} currentUserId={user.id} />
+		<SearchPageContainer
+			searchParams={searchParams}
+			currentUserId={clerkUser.id}
+		/>
 	);
 }

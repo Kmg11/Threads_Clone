@@ -4,11 +4,11 @@ import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 export async function checkUser() {
-	const user = await currentUser();
-	if (!user) return redirect(ROUTES.AUTH.SIGNIN);
+	const clerkUser = await currentUser();
+	if (!clerkUser) return redirect(ROUTES.AUTH.SIGNIN);
 
-	const userInfo = await getUserAction(user.id);
-	if (!userInfo?.onboarded) return redirect(ROUTES.AUTH.ONBOARDING);
+	const dbUser = await getUserAction(clerkUser.id);
+	if (!dbUser?.onboarded) return redirect(ROUTES.AUTH.ONBOARDING);
 
-	return { user, userInfo };
+	return { clerkUser, dbUser };
 }

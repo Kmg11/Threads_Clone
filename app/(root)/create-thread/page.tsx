@@ -2,7 +2,7 @@ import { CreateThreadPageContainer } from "@/containers/root/CreateThreadPageCon
 import { checkUser } from "@/lib/checkUser";
 
 export default async function CreateThreadPage() {
-	const { userInfo } = await checkUser();
+	const { dbUser } = await checkUser();
 
-	return <CreateThreadPageContainer userInfo={userInfo} />;
+	return <CreateThreadPageContainer userInfo={dbUser} />;
 }

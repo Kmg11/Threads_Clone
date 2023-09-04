@@ -350,9 +350,16 @@ Fix CommunityPageContainer problem
 
 ======================================================================================
 
-- Add webhook to account settings from clerk
+Enhance AccountProfileForm and checkUser
+
+- Enhance AccountProfileForm
+- Rename checkUser return from { user, userInfo } to { clerkUser, dbUser }
+
+======================================================================================
+
 - Send updates happen in AccountProfileForm to clerk
-- Add clerk id as _id
+- Add webhook to account settings from clerk
+- What is username already taken
 
 - Enhancements
 	- Global

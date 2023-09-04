@@ -9,11 +9,12 @@ import { updateUserAction } from "@/server/actions/userActions/updateUser.action
 import { usePathname, useRouter } from "next/navigation";
 import { ROUTES } from "@/constants";
 
-interface UseAccountProfileFormProps {
-	user: AccountProfileFormProps["user"];
-}
+interface UseAccountProfileFormProps extends AccountProfileFormProps {}
 
-export const useAccountProfileForm = ({ user }: UseAccountProfileFormProps) => {
+export const useAccountProfileForm = ({
+	clerkUser,
+	dbUser,
+}: UseAccountProfileFormProps) => {
 	const router = useRouter();
 	const pathname = usePathname();
 
@@ -23,10 +24,10 @@ export const useAccountProfileForm = ({ user }: UseAccountProfileFormProps) => {
 	const form = useForm<UserSchemaType>({
 		resolver: zodResolver(UserSchema),
 		defaultValues: {
-			profile_photo: user.image,
-			name: user.name,
-			username: user.username || "",
-			bio: user.bio,
+			profile_photo: dbUser?.image || clerkUser.imageUrl,
+			name: dbUser?.name || `${clerkUser.firstName} ${clerkUser.lastName}`,
+			username: dbUser?.username || clerkUser.username || "",
+			bio: dbUser?.bio,
 		},
 	});
 
@@ -40,7 +41,7 @@ export const useAccountProfileForm = ({ user }: UseAccountProfileFormProps) => {
 		}
 
 		await updateUserAction({
-			userId: user.id,
+			userId: clerkUser.id,
 			image: values.profile_photo,
 			name: values.name,
 			username: values.username,

@@ -7,9 +7,9 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-	const { user } = await checkUser();
+	const { clerkUser } = await checkUser();
 
 	return (
-		<ProfilePageContainer userId={params.userId} currentUserId={user.id} />
+		<ProfilePageContainer userId={params.userId} currentUserId={clerkUser.id} />
 	);
 }

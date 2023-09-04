@@ -12,15 +12,6 @@ export const OnboardingPageContainer = ({
 	user,
 	userInfo,
 }: OnboardingPageContainerProps) => {
-	const userData: Pick<UserType, "id" | "username" | "name" | "bio" | "image"> =
-		{
-			id: user.id,
-			username: userInfo?.username || user.username || "",
-			name: userInfo?.name || `${user.firstName} ${user.lastName}`,
-			bio: userInfo?.bio,
-			image: userInfo?.image || user.imageUrl,
-		};
-
 	return (
 		<main className="mx-auto flex max-w-3xl flex-col justify-start px-10 py-20">
 			<h1 className="head-text">Onboarding</h1>
@@ -30,7 +21,7 @@ export const OnboardingPageContainer = ({
 			</p>
 
 			<section className="my-9 bg-dark-2 p-10">
-				<AccountProfileForm user={userData} />
+				<AccountProfileForm clerkUser={user} dbUser={userInfo} />
 			</section>
 		</main>
 	);
