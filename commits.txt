@@ -357,9 +357,18 @@ Enhance AccountProfileForm and checkUser
 
 ======================================================================================
 
+Add meta data to all pages to Enhance SEO
+
+- Handle generateMetadata to thread page
+- Handle generateMetadata to community page
+- Handle generateMetadata to profile page
+
+======================================================================================
+
 - Send updates happen in AccountProfileForm to clerk
 - Add webhook to account settings from clerk
 - What is username already taken
+- Check responsive from mobile
 
 - Enhancements
 	- Global
@@ -368,10 +377,6 @@ Enhance AccountProfileForm and checkUser
 			- change [ image, name, bio, username ]
 			- Delete user
 			- All settings
-	
-	- SEO
-		- Add constants for app name to use seo
-		- handle ceo for all pages
 
 	- Community
 		- there is a time between create community and add to my database cause a problem

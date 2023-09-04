@@ -5,8 +5,27 @@ import "./globals.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Threads",
+	title: {
+		default: "Threads",
+		template: "%s | Threads",
+	},
 	description: "Threads App",
+	creator: "Kirolos Mahfouz",
+	keywords: [
+		"threads",
+		"app",
+		"social",
+		"media",
+		"social media",
+		"Next.js",
+		"React",
+		"TypeScript",
+		"Tailwind CSS",
+		"Clerk",
+		"Node.js",
+		"MongoDB",
+	],
+	themeColor: "#000000",
 };
 
 const interFont = Inter({ subsets: ["latin"] });

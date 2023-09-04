@@ -1,7 +1,7 @@
 import { SignIn } from "@clerk/nextjs";
 
 export const metadata = {
-	title: "Sign In | Threads",
+	title: "Sign In",
 	description: "Sign in to Threads App",
 };
 

@@ -3,6 +3,12 @@ import { OnboardingPageContainer } from "@/containers/auth/OnboardingPageContain
 import { getUserAction } from "@/server/actions/userActions/getUser.action";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Onboarding",
+	description: "Onboarding Page of Threads",
+};
 
 export default async function Onboarding() {
 	const user = await currentUser();
