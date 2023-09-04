@@ -24,8 +24,8 @@ export const ProfilePageContainer = async ({
 	return (
 		<section>
 			<ProfileHeader
+				accountId={userInfo.id}
 				authUserId={currentUserId}
-				userId={userInfo._id}
 				name={userInfo.name}
 				username={userInfo.username}
 				image={userInfo.image}

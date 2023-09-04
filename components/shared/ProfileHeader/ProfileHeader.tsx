@@ -2,10 +2,12 @@ import { UserType } from "@/types";
 import Image from "next/image";
 import React from "react";
 import { AppAvatar } from "../AppAvatar/AppAvatar";
+import Link from "next/link";
+import { ROUTES } from "@/constants";
 
 interface ProfileHeaderProps {
 	authUserId: string;
-	userId: UserType["_id"];
+	accountId: string;
 	name: UserType["name"];
 	username: UserType["username"];
 	image: UserType["image"];
@@ -15,7 +17,7 @@ interface ProfileHeaderProps {
 
 export const ProfileHeader = ({
 	authUserId,
-	userId,
+	accountId,
 	bio,
 	image,
 	name,
@@ -43,6 +45,21 @@ export const ProfileHeader = ({
 						<p className="text-base-medium text-gray-1">@{username}</p>
 					</div>
 				</div>
+
+				{accountId === authUserId && type !== "community" && (
+					<Link href={ROUTES.PROFILE.EDIT}>
+						<div className="flex cursor-pointer gap-3 rounded-lg bg-dark-3 px-4 py-2">
+							<Image
+								src="/assets/edit.svg"
+								alt="logout"
+								width={16}
+								height={16}
+							/>
+
+							<p className="text-light-2 max-sm:hidden">Edit</p>
+						</div>
+					</Link>
+				)}
 			</div>
 
 			{bio && (

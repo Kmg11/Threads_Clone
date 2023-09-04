@@ -339,8 +339,16 @@ Split ThreadCard into small components
 
 ======================================================================================
 
-- Remove double images
-- When type comment on another tab not show in the other tab [ revalidate path when add comment ]
+Create Edit Profile Page
+
+- Add edit button to ProfileHeader
+- Create profile edit page
+
+======================================================================================
+
+- Add webhook to account settings from clerk
+- Send updates happen in AccountProfileForm to clerk
+- Add clerk id as _id
 
 - Enhancements
 	- Global
