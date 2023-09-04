@@ -7,11 +7,12 @@ interface CommunityPageProps {
 }
 
 export default async function CommunityPage({ params }: CommunityPageProps) {
-	const { user } = await checkUser();
+	const { user, userInfo } = await checkUser();
 
 	return (
 		<CommunityPageContainer
 			currentUserId={user.id}
+			userInfoId={userInfo?.id}
 			communityId={params.communityId}
 		/>
 	);

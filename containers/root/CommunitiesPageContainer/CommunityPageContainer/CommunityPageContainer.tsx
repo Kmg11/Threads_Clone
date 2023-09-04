@@ -12,12 +12,14 @@ import { CommunityTabs, communityTabs } from "./communityTabs";
 
 interface CommunityPageContainerProps {
 	communityId: string;
+	userInfoId: User["id"];
 	currentUserId: User["id"];
 }
 
 export const CommunityPageContainer = async ({
 	communityId,
 	currentUserId,
+	userInfoId,
 }: CommunityPageContainerProps) => {
 	const communityDetails = await getCommunityDetailsAction(communityId);
 	if (!communityDetails) return redirect(ROUTES.HOME);
@@ -26,7 +28,7 @@ export const CommunityPageContainer = async ({
 		<section>
 			<ProfileHeader
 				authUserId={currentUserId}
-				userId={communityDetails._id}
+				accountId={userInfoId}
 				name={communityDetails.name}
 				username={communityDetails.username}
 				image={communityDetails.image}

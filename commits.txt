@@ -346,6 +346,10 @@ Create Edit Profile Page
 
 ======================================================================================
 
+Fix CommunityPageContainer problem
+
+======================================================================================
+
 - Add webhook to account settings from clerk
 - Send updates happen in AccountProfileForm to clerk
 - Add clerk id as _id
