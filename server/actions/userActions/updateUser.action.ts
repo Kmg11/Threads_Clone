@@ -1,5 +1,6 @@
 "use server";
 
+import { ROUTES } from "@/constants";
 import { UserModel, connectToDB } from "@/server";
 import { UserType } from "@/types";
 import { revalidatePath } from "next/cache";
@@ -33,7 +34,7 @@ export async function updateUserAction({
 			{ upsert: true, new: true }
 		);
 
-		if (path === "/profile/edit") {
+		if (path === ROUTES.PROFILE.EDIT) {
 			revalidatePath(path);
 		}
 

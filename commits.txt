@@ -372,6 +372,11 @@ Handle sync clerk user data with database user data when change from AccountProf
 
 ======================================================================================
 
+Listen to user.updated webhook to update user data in database
+
+======================================================================================
+
+- Listen to user.deleted webhook
 - Add webhook to account settings from clerk
 - What if username already taken [ return error object ]
 - Add loading to AccountProfileForm and PostThreadForm and disable submit button

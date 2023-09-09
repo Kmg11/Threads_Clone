@@ -7,6 +7,7 @@ import { createCommunityAction } from "@/server/actions/community/createCommunit
 import { addMemberToCommunityAction } from "@/server/actions/community/addMemberToCommunity.action";
 import { removeMemberFromCommunityAction } from "@/server/actions/community/removeMemberFromCommunity.action";
 import { updateCommunityInfoAction } from "@/server/actions/community/updateCommunityInfo.action";
+import { updateUserAction } from "@/server/actions/userActions/updateUser.action";
 
 type EventType =
 	| "organization.created"
@@ -14,7 +15,9 @@ type EventType =
 	| "organizationMembership.created"
 	| "organizationMembership.deleted"
 	| "organization.updated"
-	| "organization.deleted";
+	| "organization.deleted"
+	| "user.updated"
+	| "user.deleted";
 
 type Event = {
 	data: Record<string, string | number | Record<string, string>[]>;
@@ -32,10 +35,7 @@ export const POST = async (request: Request) => {
 		"svix-signature": header.get("svix-signature"),
 	};
 
-	// * Activate Webhook in the Clerk Dashboard.
-	// * After adding the endpoint, you'll see the secret on the right side.
 	const wh = new Webhook(process.env.NEXT_CLERK_WEBHOOK_SECRET || "");
-
 	let event: Event | null = null;
 
 	try {
@@ -165,6 +165,34 @@ export const POST = async (request: Request) => {
 
 			return NextResponse.json(
 				{ message: "Organization deleted" },
+				{ status: 201 }
+			);
+		} catch (err) {
+			console.log(err);
+
+			return NextResponse.json(
+				{ message: "Internal Server Error" },
+				{ status: 500 }
+			);
+		}
+	}
+
+	// * Listen user updated
+	if (eventType === "user.updated") {
+		try {
+			const { id, first_name, last_name, username, profile_image_url } =
+				event?.data as any;
+
+			await updateUserAction({
+				userId: id,
+				name: `${first_name} ${last_name}`,
+				username,
+				image: profile_image_url,
+				path: "/",
+			});
+
+			return NextResponse.json(
+				{ message: "User created or updated" },
 				{ status: 201 }
 			);
 		} catch (err) {
