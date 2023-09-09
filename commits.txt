@@ -365,14 +365,19 @@ Add meta data to all pages to Enhance SEO
 
 ======================================================================================
 
-- Send updates happen in AccountProfileForm to clerk
+Handle sync clerk user data with database user data when change from AccountProfileForm
+
+- Handle update clerk user data from onboarding and edit profile
+- Fix ThreadCard responsive
+
+======================================================================================
+
 - Add webhook to account settings from clerk
-- What is username already taken
-- Check responsive from mobile
+- What if username already taken [ return error object ]
+- Add loading to AccountProfileForm and PostThreadForm and disable submit button
 
 - Enhancements
 	- Global
-		- Clerk components responsive
 		- Listen to user changes to change user state
 			- change [ image, name, bio, username ]
 			- Delete user
@@ -387,7 +392,6 @@ Add meta data to all pages to Enhance SEO
 		- add community type to populate threads and user
 
 	- Profile page | Community Page
-		- Handle edit profile from profile itself
 		- Add pagination to profile page
 
 Technologies

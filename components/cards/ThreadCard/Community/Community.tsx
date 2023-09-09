@@ -13,9 +13,9 @@ export const Community = ({ community, createdAt }: CommunityProps) => {
 	return (
 		<Link
 			href={ROUTES.COMMUNITY(community.id)}
-			className="mt-5 flex items-center"
+			className="mt-5"
 		>
-			<p className="text-subtle-medium text-gray-1">
+			<p className="text-subtle-medium text-gray-1 inline align-middle">
 				{formatDateString(createdAt)} - {community.name} Community
 			</p>
 
@@ -24,7 +24,7 @@ export const Community = ({ community, createdAt }: CommunityProps) => {
 				width={14}
 				height={14}
 				name={community.name}
-				className="ms-1"
+				className="inline-block ms-1 align-middle"
 			/>
 		</Link>
 	);

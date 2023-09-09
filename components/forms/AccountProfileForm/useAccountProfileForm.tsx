@@ -8,6 +8,7 @@ import { AccountProfileFormProps } from "./AccountProfileForm";
 import { updateUserAction } from "@/server/actions/userActions/updateUser.action";
 import { usePathname, useRouter } from "next/navigation";
 import { ROUTES } from "@/constants";
+import { useUser } from "@clerk/nextjs";
 
 interface UseAccountProfileFormProps extends AccountProfileFormProps {}
 
@@ -15,6 +16,7 @@ export const useAccountProfileForm = ({
 	clerkUser,
 	dbUser,
 }: UseAccountProfileFormProps) => {
+	const { user } = useUser();
 	const router = useRouter();
 	const pathname = usePathname();
 
@@ -33,14 +35,23 @@ export const useAccountProfileForm = ({
 
 	const onSubmit = async (values: UserSchemaType) => {
 		if (isBase64Image(values.profile_photo)) {
-			const imgRes = await startUpload(files);
+			const uploadImagePromise = startUpload(files);
 
-			if (imgRes && imgRes[0].url) {
+			const uploadClerkUserImagePromise = user?.setProfileImage({
+				file: values.profile_photo,
+			});
+
+			const [imgRes] = await Promise.all([
+				uploadImagePromise,
+				uploadClerkUserImagePromise,
+			]);
+
+			if (imgRes && imgRes.length > 0 && imgRes[0].url) {
 				values.profile_photo = imgRes[0].url;
 			}
 		}
 
-		await updateUserAction({
+		const updateDBUser = updateUserAction({
 			userId: clerkUser.id,
 			image: values.profile_photo,
 			name: values.name,
@@ -48,6 +59,16 @@ export const useAccountProfileForm = ({
 			bio: values.bio,
 			path: pathname,
 		});
+
+		const updateClerkUser = user?.update({
+			username: values.username,
+			firstName: values.name.split(" ")[0],
+			lastName: values.name.split(" ")[1] || "",
+		});
+
+		await Promise.all([updateDBUser, updateClerkUser]);
+
+		user?.reload();
 
 		if (pathname === ROUTES.AUTH.ONBOARDING) router.push(ROUTES.HOME);
 		if (pathname === ROUTES.PROFILE.EDIT) router.back();
