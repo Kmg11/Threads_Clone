@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { AuthorType } from ".";
+import { AuthorType, CommunityType } from ".";
 
 export interface ThreadDocumentType {
 	_id: mongoose.Types.ObjectId;
@@ -13,7 +13,8 @@ export interface ThreadDocumentType {
 }
 
 export interface ThreadType
-	extends Omit<ThreadDocumentType, "author" | "comments"> {
+	extends Omit<ThreadDocumentType, "author" | "comments" | "community"> {
 	author: AuthorType;
 	comments: ThreadType[];
+	community: CommunityType;
 }

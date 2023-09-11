@@ -376,25 +376,26 @@ Listen to user.updated webhook to update user data in database
 
 ======================================================================================
 
+Handle delete user webhook
+
+- Add revalidate to user.updated webhook
+- Create deleteUserAction and handle delete user from database
 - Listen to user.deleted webhook
-- Add webhook to account settings from clerk
+- Add CommunityType to UserType
+
+======================================================================================
+
+- When delete account redirect to wrong signin page
+- Use ngrok to connect with webhook to make sure of types
+- Test security settings
+- When create Community it added to user db two times
+- Test revalidate path in user.updated and check from deployment version
 - What if username already taken [ return error object ]
 - Add loading to AccountProfileForm and PostThreadForm and disable submit button
 
 - Enhancements
-	- Global
-		- Listen to user changes to change user state
-			- change [ image, name, bio, username ]
-			- Delete user
-			- All settings
-
 	- Community
-		- there is a time between create community and add to my database cause a problem
-			- Check if no community add to database and there is a community id send error
-		- test all communities functionality
 		- Remove community bio and handle add it
-		- Check organization settings
-		- add community type to populate threads and user
 
 	- Profile page | Community Page
 		- Add pagination to profile page

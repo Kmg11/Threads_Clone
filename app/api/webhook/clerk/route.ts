@@ -8,6 +8,8 @@ import { addMemberToCommunityAction } from "@/server/actions/community/addMember
 import { removeMemberFromCommunityAction } from "@/server/actions/community/removeMemberFromCommunity.action";
 import { updateCommunityInfoAction } from "@/server/actions/community/updateCommunityInfo.action";
 import { updateUserAction } from "@/server/actions/userActions/updateUser.action";
+import { revalidatePath } from "next/cache";
+import { deleteUserAction } from "@/server/actions/userActions/deleteUser.action";
 
 type EventType =
 	| "organization.created"
@@ -191,10 +193,30 @@ export const POST = async (request: Request) => {
 				path: "/",
 			});
 
+			revalidatePath("/");
+
 			return NextResponse.json(
 				{ message: "User created or updated" },
 				{ status: 201 }
 			);
+		} catch (err) {
+			console.log(err);
+
+			return NextResponse.json(
+				{ message: "Internal Server Error" },
+				{ status: 500 }
+			);
+		}
+	}
+
+	// * Listen user deletion
+	if (eventType === "user.deleted") {
+		try {
+			const { id } = event?.data as any;
+
+			await deleteUserAction(id);
+
+			return NextResponse.json({ message: "User deleted" }, { status: 201 });
 		} catch (err) {
 			console.log(err);
 

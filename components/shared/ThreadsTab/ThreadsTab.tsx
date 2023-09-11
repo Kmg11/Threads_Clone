@@ -1,10 +1,8 @@
 import { ThreadCard } from "@/components/cards/ThreadCard/ThreadCard";
-import { ROUTES } from "@/constants";
 import { getCommunityThreadsAction } from "@/server/actions/community/getCommunityThreads.action";
 import { getUserRepliesThreadsAction } from "@/server/actions/threadActions/getUserRepliesThreads.action";
 import { getUserThreadsAction } from "@/server/actions/userActions/getUserThreads.action";
 import { ThreadType, UserType } from "@/types";
-import { redirect } from "next/navigation";
 import React from "react";
 
 interface ThreadsTabProps {
