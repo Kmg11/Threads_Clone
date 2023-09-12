@@ -1,6 +1,5 @@
-import { Webhook, WebhookRequiredHeaders } from "svix";
+import { Webhook } from "svix";
 import { headers } from "next/headers";
-import { IncomingHttpHeaders } from "http";
 import { NextResponse } from "next/server";
 import { deleteCommunityAction } from "@/server/actions/community/deleteCommunity.action";
 import { createCommunityAction } from "@/server/actions/community/createCommunity.action";
@@ -8,61 +7,58 @@ import { addMemberToCommunityAction } from "@/server/actions/community/addMember
 import { removeMemberFromCommunityAction } from "@/server/actions/community/removeMemberFromCommunity.action";
 import { updateCommunityInfoAction } from "@/server/actions/community/updateCommunityInfo.action";
 import { updateUserAction } from "@/server/actions/userActions/updateUser.action";
-import { revalidatePath } from "next/cache";
 import { deleteUserAction } from "@/server/actions/userActions/deleteUser.action";
-
-type EventType =
-	| "organization.created"
-	| "organizationInvitation.created"
-	| "organizationMembership.created"
-	| "organizationMembership.deleted"
-	| "organization.updated"
-	| "organization.deleted"
-	| "user.updated"
-	| "user.deleted";
-
-type Event = {
-	data: Record<string, string | number | Record<string, string>[]>;
-	object: "event";
-	type: EventType;
-};
+import { WebhookEvent } from "@clerk/nextjs/server";
 
 export const POST = async (request: Request) => {
-	const payload = await request.json();
-	const header = headers();
+	const WEBHOOK_SECRET = process.env.NEXT_CLERK_WEBHOOK_SECRET;
 
-	const heads = {
-		"svix-id": header.get("svix-id"),
-		"svix-timestamp": header.get("svix-timestamp"),
-		"svix-signature": header.get("svix-signature"),
-	};
-
-	const wh = new Webhook(process.env.NEXT_CLERK_WEBHOOK_SECRET || "");
-	let event: Event | null = null;
-
-	try {
-		event = wh.verify(
-			JSON.stringify(payload),
-			heads as IncomingHttpHeaders & WebhookRequiredHeaders
-		) as Event;
-	} catch (err) {
-		return NextResponse.json({ message: err }, { status: 400 });
+	if (!WEBHOOK_SECRET) {
+		throw new Error(
+			"Please add NEXT_CLERK_WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
+		);
 	}
 
-	const eventType: EventType = event?.type!;
+	// * Get the headers
+	const headerPayload = headers();
+	const svix_id = headerPayload.get("svix-id");
+	const svix_timestamp = headerPayload.get("svix-timestamp");
+	const svix_signature = headerPayload.get("svix-signature");
 
-	// * Listen organization creation event
-	if (eventType === "organization.created") {
-		const { id, name, slug, logo_url, image_url, created_by } =
-			event?.data ?? {};
+	if (!svix_id || !svix_timestamp || !svix_signature) {
+		return new Response("Error occured -- no svix headers", { status: 400 });
+	}
+
+	// * Get the body
+	const payload = await request.json();
+	const body = JSON.stringify(payload);
+
+	// * Create a new SVIX instance with your secret.
+	const wh = new Webhook(WEBHOOK_SECRET);
+	let event: WebhookEvent;
+
+	// * Verify the payload with the headers
+	try {
+		event = wh.verify(body, {
+			"svix-id": svix_id,
+			"svix-timestamp": svix_timestamp,
+			"svix-signature": svix_signature,
+		}) as WebhookEvent;
+	} catch (err) {
+		console.error("Error verifying webhook:", err);
+		return new Response("Error occured", { status: 400 });
+	}
+
+	// * Listen organization created event
+	if (event.type === "organization.created") {
+		const { id, name, slug, image_url, created_by } = event.data;
 
 		try {
 			await createCommunityAction({
 				id,
 				name,
 				username: slug,
-				image: logo_url || image_url,
-				bio: "org bio",
+				image: image_url,
 				createdBy: created_by,
 			});
 
@@ -76,29 +72,10 @@ export const POST = async (request: Request) => {
 		}
 	}
 
-	// * Listen organization invitation creation event.
-	// * Just to show. You can avoid this or tell people that we can create a new mongoose action and
-	// * add pending invites in the database.
-	if (eventType === "organizationInvitation.created") {
-		try {
-			return NextResponse.json(
-				{ message: "Invitation created" },
-				{ status: 201 }
-			);
-		} catch (err) {
-			console.log(err);
-
-			return NextResponse.json(
-				{ message: "Internal Server Error" },
-				{ status: 500 }
-			);
-		}
-	}
-
 	// * Listen organization membership (member invite & accepted) creation
-	if (eventType === "organizationMembership.created") {
+	if (event.type === "organizationMembership.created") {
 		try {
-			const { organization, public_user_data } = event?.data as any;
+			const { organization, public_user_data } = event.data;
 
 			await addMemberToCommunityAction(
 				organization.id,
@@ -120,9 +97,9 @@ export const POST = async (request: Request) => {
 	}
 
 	// * Listen member deletion event
-	if (eventType === "organizationMembership.deleted") {
+	if (event.type === "organizationMembership.deleted") {
 		try {
-			const { organization, public_user_data } = event?.data as any;
+			const { organization, public_user_data } = event.data;
 
 			await removeMemberFromCommunityAction(
 				public_user_data.user_id,
@@ -141,11 +118,11 @@ export const POST = async (request: Request) => {
 	}
 
 	// * Listen organization updating event
-	if (eventType === "organization.updated") {
+	if (event.type === "organization.updated") {
 		try {
-			const { id, logo_url, name, slug } = event?.data as any;
+			const { id, image_url, name, slug } = event.data;
 
-			await updateCommunityInfoAction(id, name, slug, logo_url);
+			await updateCommunityInfoAction(id, name, slug, image_url);
 
 			return NextResponse.json({ message: "Member removed" }, { status: 201 });
 		} catch (err) {
@@ -159,11 +136,9 @@ export const POST = async (request: Request) => {
 	}
 
 	// * Listen organization deletion event
-	if (eventType === "organization.deleted") {
+	if (event.type === "organization.deleted") {
 		try {
-			const { id } = event?.data as any;
-
-			await deleteCommunityAction(id);
+			await deleteCommunityAction(event.data.id);
 
 			return NextResponse.json(
 				{ message: "Organization deleted" },
@@ -180,20 +155,17 @@ export const POST = async (request: Request) => {
 	}
 
 	// * Listen user updated
-	if (eventType === "user.updated") {
+	if (event.type === "user.updated") {
 		try {
-			const { id, first_name, last_name, username, profile_image_url } =
-				event?.data as any;
+			const { id, first_name, last_name, username, image_url } = event.data;
 
 			await updateUserAction({
 				userId: id,
 				name: `${first_name} ${last_name}`,
-				username,
-				image: profile_image_url,
+				username: username as string,
+				image: image_url,
 				path: "/",
 			});
-
-			revalidatePath("/");
 
 			return NextResponse.json(
 				{ message: "User created or updated" },
@@ -210,11 +182,9 @@ export const POST = async (request: Request) => {
 	}
 
 	// * Listen user deletion
-	if (eventType === "user.deleted") {
+	if (event.type === "user.deleted") {
 		try {
-			const { id } = event?.data as any;
-
-			await deleteUserAction(id);
+			await deleteUserAction(event.data.id as string);
 
 			return NextResponse.json({ message: "User deleted" }, { status: 201 });
 		} catch (err) {
@@ -227,5 +197,5 @@ export const POST = async (request: Request) => {
 		}
 	}
 
-	return;
+	return NextResponse.json({ message: "This Worked", success: true });
 };

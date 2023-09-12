@@ -11,18 +11,14 @@ export async function removeMemberFromCommunityAction(
 		connectToDB();
 
 		const userIdObject = await UserModel.findOne({ id: userId }, { _id: 1 });
+		if (!userIdObject) throw new Error("User not found");
+
 		const communityIdObject = await CommunityModel.findOne(
 			{ id: communityId },
 			{ _id: 1 }
 		);
 
-		if (!userIdObject) {
-			throw new Error("User not found");
-		}
-
-		if (!communityIdObject) {
-			throw new Error("Community not found");
-		}
+		if (!communityIdObject) throw new Error("Community not found");
 
 		// * Remove the user's _id from the members array in the community
 		await CommunityModel.updateOne(

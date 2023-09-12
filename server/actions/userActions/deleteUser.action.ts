@@ -17,13 +17,15 @@ async function gethAllDeletedThreads(threads: ThreadType[]) {
 	return deletedThreads;
 }
 
-export const deleteUserAction = async (userId: UserType["_id"]) => {
+export const deleteUserAction = async (userId: UserType["id"]) => {
 	try {
 		// * Delete user from database
-		const deletedUser = await UserModel.findByIdAndDelete(userId);
+		const deletedUser = await UserModel.findOneAndDelete({ id: userId });
+
+		if (!deletedUser) throw new Error("User not found");
 
 		// * Delete user threads and it's comments
-		const userThreads = await ThreadModel.find({ author: userId });
+		const userThreads = await ThreadModel.find({ author: deletedUser._id });
 		const deletedThreads = await gethAllDeletedThreads(userThreads);
 		const deletedThreadIds = deletedThreads.map((thread) => thread._id);
 
@@ -74,7 +76,7 @@ export const deleteUserAction = async (userId: UserType["_id"]) => {
 		// * Pull user from all communities
 		const pullUserFromCommunities = CommunityModel.updateMany(
 			{ _id: { $in: deletedUser?.communities } },
-			{ $pull: { members: { $in: [userId] } } }
+			{ $pull: { members: { $in: [deletedUser._id] } } }
 		);
 
 		Promise.all([

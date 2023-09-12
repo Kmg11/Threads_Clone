@@ -2,12 +2,13 @@
 
 import { CommunityModel, ThreadModel, UserModel } from "../../models";
 import { connectToDB } from "../../db/connect";
+import { OrganizationJSON } from "@clerk/nextjs/server";
 
 export async function updateCommunityInfoAction(
-	communityId: string,
-	name: string,
-	username: string,
-	image: string
+	communityId: OrganizationJSON["id"],
+	name: OrganizationJSON["name"],
+	username: OrganizationJSON["slug"],
+	image: OrganizationJSON["image_url"]
 ) {
 	try {
 		connectToDB();

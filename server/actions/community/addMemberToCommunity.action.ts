@@ -12,17 +12,11 @@ export async function addMemberToCommunityAction(
 
 		// * Find the community by its unique id
 		const community = await CommunityModel.findOne({ id: communityId });
-
-		if (!community) {
-			throw new Error("Community not found");
-		}
+		if (!community) throw new Error("Community not found");
 
 		// * Find the user by their unique id
 		const user = await UserModel.findOne({ id: memberId });
-
-		if (!user) {
-			throw new Error("User not found");
-		}
+		if (!user) throw new Error("User not found");
 
 		// * Check if the user is already a member of the community
 		if (community.members.includes(user._id)) {

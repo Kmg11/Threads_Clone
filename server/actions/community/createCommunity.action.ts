@@ -2,21 +2,20 @@
 
 import { CommunityModel, UserModel } from "../../models";
 import { connectToDB } from "../../db/connect";
+import { OrganizationJSON } from "@clerk/nextjs/server";
 
 interface CreateCommunityActionParams {
-	id: string | number | Record<string, string>[];
-	name: string | number | Record<string, string>[];
-	username: string | number | Record<string, string>[];
-	image: string | number | Record<string, string>[];
-	bio: string | number | Record<string, string>[];
-	createdBy: string | number | Record<string, string>[];
+	id: OrganizationJSON["id"];
+	name: OrganizationJSON["name"];
+	username: OrganizationJSON["slug"];
+	image: OrganizationJSON["image_url"];
+	createdBy: OrganizationJSON["created_by"];
 }
 
 export async function createCommunityAction({
 	id,
 	name,
 	username,
-	bio,
 	image,
 	createdBy,
 }: CreateCommunityActionParams) {
@@ -31,7 +30,6 @@ export async function createCommunityAction({
 			name,
 			username,
 			image,
-			bio,
 			createdBy: user._id,
 		});
 

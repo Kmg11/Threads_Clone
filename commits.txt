@@ -385,13 +385,38 @@ Handle delete user webhook
 
 ======================================================================================
 
+Enhancements on clerk webhooks
+
+- Rebuild logic
+- Enhance types
+- Enhance organization.created
+- Enhance createCommunityAction types
+- Remove bio from createCommunityAction
+- Enhance organizationMembership.created
+- Enhance addMemberToCommunityAction
+- Enhance organization.updated
+- Fix updateCommunityInfoAction types
+- Enhance organization.deleted
+- Fix deleteCommunityAction logic and types
+- Enhance user.updated
+
+======================================================================================
+
+- Remove organizationInvitation.created from clerk webhook
+- leave organization webhook
+- Check organizationMembership.deleted
+- Return webhook secret same as deployed version
+- When invitation accepted from mail it go to wrong url [ add link to clerk ]
 - When delete account redirect to wrong signin page
-- Use ngrok to connect with webhook to make sure of types
-- Test security settings
 - When create Community it added to user db two times
-- Test revalidate path in user.updated and check from deployment version
-- What if username already taken [ return error object ]
-- Add loading to AccountProfileForm and PostThreadForm and disable submit button
+- Check organization invitation webhook
+
+- Global
+	- Search about handle errors with server actions
+	- Replace currentUser with useUser in RightSideBar
+	- What if username already taken [ return error object ]
+	- Add loading to AccountProfileForm and PostThreadForm and disable submit button
+	- try fix object errors
 
 - Enhancements
 	- Community
