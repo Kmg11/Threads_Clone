@@ -165,6 +165,7 @@ export const POST = async (request: Request) => {
 				username: username as string,
 				image: image_url,
 				path: "/",
+				insertIfNotExists: false,
 			});
 
 			return NextResponse.json(

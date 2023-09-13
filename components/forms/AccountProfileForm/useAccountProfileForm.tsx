@@ -20,6 +20,8 @@ export const useAccountProfileForm = ({
 	const router = useRouter();
 	const pathname = usePathname();
 
+	const [APIError, setAPIError] = useState("");
+
 	const [files, setFiles] = useState<File[]>([]);
 	const { startUpload } = useUploadThing("media");
 
@@ -34,45 +36,53 @@ export const useAccountProfileForm = ({
 	});
 
 	const onSubmit = async (values: UserSchemaType) => {
-		if (isBase64Image(values.profile_photo)) {
-			const uploadImagePromise = startUpload(files);
+		try {
+			setAPIError("");
 
-			const uploadClerkUserImagePromise = user?.setProfileImage({
-				file: values.profile_photo,
+			if (isBase64Image(values.profile_photo)) {
+				const uploadImagePromise = startUpload(files);
+
+				const uploadClerkUserImagePromise = user?.setProfileImage({
+					file: values.profile_photo,
+				});
+
+				const [imgRes] = await Promise.all([
+					uploadImagePromise,
+					uploadClerkUserImagePromise,
+				]);
+
+				if (imgRes && imgRes.length > 0 && imgRes[0].url) {
+					values.profile_photo = imgRes[0].url;
+				}
+			}
+
+			const updateDBUser = updateUserAction({
+				userId: clerkUser.id,
+				image: values.profile_photo,
+				name: values.name,
+				username: values.username,
+				bio: values.bio,
+				path: pathname,
 			});
 
-			const [imgRes] = await Promise.all([
-				uploadImagePromise,
-				uploadClerkUserImagePromise,
-			]);
+			const updateClerkUser = user?.update({
+				username: values.username,
+				firstName: values.name.split(" ")[0],
+				lastName: values.name.split(" ")[1] || "",
+			});
 
-			if (imgRes && imgRes.length > 0 && imgRes[0].url) {
-				values.profile_photo = imgRes[0].url;
-			}
+			await Promise.all([updateDBUser, updateClerkUser]);
+
+			user?.reload();
+
+			if (pathname === ROUTES.AUTH.ONBOARDING) router.push(ROUTES.HOME);
+			if (pathname === ROUTES.PROFILE.EDIT) router.back();
+		} catch (error: any) {
+			setAPIError(
+				"Something went wrong, try change your username or try again."
+			);
 		}
-
-		const updateDBUser = updateUserAction({
-			userId: clerkUser.id,
-			image: values.profile_photo,
-			name: values.name,
-			username: values.username,
-			bio: values.bio,
-			path: pathname,
-		});
-
-		const updateClerkUser = user?.update({
-			username: values.username,
-			firstName: values.name.split(" ")[0],
-			lastName: values.name.split(" ")[1] || "",
-		});
-
-		await Promise.all([updateDBUser, updateClerkUser]);
-
-		user?.reload();
-
-		if (pathname === ROUTES.AUTH.ONBOARDING) router.push(ROUTES.HOME);
-		if (pathname === ROUTES.PROFILE.EDIT) router.back();
 	};
 
-	return { form, onSubmit, setFiles };
+	return { form, APIError, onSubmit, setFiles };
 };

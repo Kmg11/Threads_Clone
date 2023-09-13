@@ -402,28 +402,28 @@ Enhancements on clerk webhooks
 
 ======================================================================================
 
+Enhancements on AccountProfileForm and PostThreadForm | Fix onboarding problem
+
+- Redirect to signin page if no user in RightSideBar
+- Fix onboarding problem when recreate deleted user [ Fix user.updated webhook ]
+- Add insertIfNotExists prop to updateUserAction to handle insert user if not exists
+- Enhance AccountProfileForm
+	- Make username min length 4 chars instead of 3 to match clerk user
+	- Add APIError state to show message if any error happen
+	- Disable submit button if form isSubmitting
+- Disable submit button if form isSubmitting in PostThreadForm
+
+======================================================================================
+
+- Error when delete user and go back
+
 - Remove organizationInvitation.created from clerk webhook
 - leave organization webhook
 - Check organizationMembership.deleted
-- Return webhook secret same as deployed version
-- When invitation accepted from mail it go to wrong url [ add link to clerk ]
-- When delete account redirect to wrong signin page
 - When create Community it added to user db two times
-- Check organization invitation webhook
-
-- Global
-	- Search about handle errors with server actions
-	- Replace currentUser with useUser in RightSideBar
-	- What if username already taken [ return error object ]
-	- Add loading to AccountProfileForm and PostThreadForm and disable submit button
-	- try fix object errors
-
-- Enhancements
-	- Community
-		- Remove community bio and handle add it
-
-	- Profile page | Community Page
-		- Add pagination to profile page
+- When invitation accepted from mail it go to wrong url [ add link to clerk ]
+- When delete account redirect to wrong signin page [ try make it production or add link to clerk dashboard ]
+- Return webhook secret same as deployed version
 
 Technologies
 	- Next.js
@@ -436,25 +436,5 @@ Technologies
 	- Node.js
 	- Shadcn
 
-Features
-	- Auth
-		- Signin
-		- Signup
-	- Thread
-		- Create Thread
-		- Delete Thread
-		- Like/Unlike Thread
-		- Nested Comments System
-	- Community
-		- Create Community
-		- Join Community
-		- Leave Community
-		- Delete Community
-		- Edit Community
-		- Community Members
-		- Community Threads
-	- Search
-		- Search for users
-		- Search for communities
-
 - Test responsive, accessible, ceo, and performance
+- ngrok code terminal [ngrok http --domain=still-brief-wasp.ngrok-free.app 3000]

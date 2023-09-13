@@ -9,6 +9,7 @@ interface UpdateUserActionParams
 	extends Pick<UserType, "name" | "username" | "image" | "bio"> {
 	userId: string;
 	path: string;
+	insertIfNotExists?: boolean;
 }
 
 export async function updateUserAction({
@@ -18,6 +19,7 @@ export async function updateUserAction({
 	bio,
 	image,
 	path,
+	insertIfNotExists = true,
 }: UpdateUserActionParams) {
 	connectToDB();
 
@@ -31,7 +33,7 @@ export async function updateUserAction({
 				image,
 				onboarded: true,
 			},
-			{ upsert: true, new: true }
+			{ upsert: insertIfNotExists, new: true }
 		);
 
 		if (path === ROUTES.PROFILE.EDIT) {

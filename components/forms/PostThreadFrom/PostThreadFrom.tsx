@@ -45,7 +45,11 @@ export const PostThreadFrom = ({ userId }: PostThreadFromProps) => {
 					)}
 				/>
 
-				<Button type="submit" className="bg-primary-500">
+				<Button
+					type="submit"
+					className="bg-primary-500"
+					disabled={form.formState.isSubmitting}
+				>
 					Post Thread
 				</Button>
 			</form>

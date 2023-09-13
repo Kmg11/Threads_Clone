@@ -26,7 +26,7 @@ export const UserSchema = z.object({
 			invalid_type_error: "Username must be a string",
 			description: "Username",
 		})
-		.min(3, { message: "Username must be at least 3 characters long" })
+		.min(4, { message: "Username must be at least 3 characters long" })
 		.max(30, { message: "Username must be at most 30 characters long" })
 		.nonempty({ message: "Username must not be empty" }),
 

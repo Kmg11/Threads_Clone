@@ -9,7 +9,7 @@ import { UserCard } from "@/components/cards/UserCard/UserCard";
 
 export const RightSideBar = async () => {
 	const user = await currentUser();
-	if (!user) return redirect(ROUTES.HOME);
+	if (!user) return redirect(ROUTES.AUTH.SIGNIN);
 
 	const suggestedUsers = await searchUsersAction({
 		userId: user.id,

@@ -18,7 +18,7 @@ export const AccountProfileForm = ({
 	clerkUser,
 	dbUser,
 }: AccountProfileFormProps) => {
-	const { form, onSubmit, setFiles } = useAccountProfileForm({
+	const { form, APIError, onSubmit, setFiles } = useAccountProfileForm({
 		clerkUser,
 		dbUser,
 	});
@@ -52,10 +52,16 @@ export const AccountProfileForm = ({
 					variant="textarea"
 				/>
 
-				<Button type="submit" className="bg-primary-500">
+				<Button
+					type="submit"
+					className="bg-primary-500"
+					disabled={form.formState.isSubmitting}
+				>
 					Continue
 				</Button>
 			</form>
+
+			{APIError && <p className="text-red-500 mt-3">{APIError}</p>}
 		</Form>
 	);
 };
