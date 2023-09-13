@@ -27,6 +27,11 @@ export async function addMemberToCommunityAction(
 		community.members.push(user._id);
 		await community.save();
 
+		// * Check if the user is already a member of the community
+		if (user.communities.includes(community._id)) {
+			throw new Error("User is already a member of the community");
+		}
+
 		// * Add the community's _id to the communities array in the user
 		user.communities.push(community._id);
 		await user.save();

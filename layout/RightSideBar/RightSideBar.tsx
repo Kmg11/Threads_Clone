@@ -6,10 +6,17 @@ import { redirect } from "next/navigation";
 import { ROUTES } from "@/constants";
 import { getCommunitiesAction } from "@/server/actions/community/getCommunities.action";
 import { UserCard } from "@/components/cards/UserCard/UserCard";
+import { User } from "@clerk/nextjs/server";
 
 export const RightSideBar = async () => {
-	const user = await currentUser();
-	if (!user) return redirect(ROUTES.AUTH.SIGNIN);
+	let user: User | null = null;
+
+	try {
+		user = await currentUser();
+		if (!user) return redirect(ROUTES.AUTH.SIGNIN);
+	} catch (error) {
+		return redirect(ROUTES.AUTH.SIGNIN);
+	}
 
 	const suggestedUsers = await searchUsersAction({
 		userId: user.id,

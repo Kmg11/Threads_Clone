@@ -415,15 +415,22 @@ Enhancements on AccountProfileForm and PostThreadForm | Fix onboarding problem
 
 ======================================================================================
 
-- Error when delete user and go back
+Fix add community to user multiple times | Fix checkUser problems
 
-- Remove organizationInvitation.created from clerk webhook
+- Fix add community multiple times to user problem
+- Add check if user is member of community in addMemberToCommunityAction
+- Handle errors in RightSideBar checkUser
+- Handle checkUser errors
+
+======================================================================================
+
 - leave organization webhook
 - Check organizationMembership.deleted
-- When create Community it added to user db two times
 - When invitation accepted from mail it go to wrong url [ add link to clerk ]
 - When delete account redirect to wrong signin page [ try make it production or add link to clerk dashboard ]
+
 - Return webhook secret same as deployed version
+- Remove organizationInvitation.created from clerk webhook
 
 Technologies
 	- Next.js
