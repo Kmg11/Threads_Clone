@@ -3,7 +3,7 @@
 import { CommunityModel, ThreadModel, UserModel } from "@/server";
 import { ThreadType, UserType } from "@/types";
 
-async function gethAllDeletedThreads(threads: ThreadType[]) {
+async function getAllDeletedThreads(threads: ThreadType[]) {
 	if (threads.length === 0) return [];
 
 	const deletedThreads = [...threads];
@@ -11,7 +11,7 @@ async function gethAllDeletedThreads(threads: ThreadType[]) {
 		parentId: { $in: threads.map((thread) => thread._id) },
 	});
 
-	const deletedChildThreadsIds = await gethAllDeletedThreads(childThreads);
+	const deletedChildThreadsIds = await getAllDeletedThreads(childThreads);
 	deletedThreads.push(...deletedChildThreadsIds);
 
 	return deletedThreads;
@@ -26,7 +26,7 @@ export const deleteUserAction = async (userId: UserType["id"]) => {
 
 		// * Delete user threads and it's comments
 		const userThreads = await ThreadModel.find({ author: deletedUser._id });
-		const deletedThreads = await gethAllDeletedThreads(userThreads);
+		const deletedThreads = await getAllDeletedThreads(userThreads);
 		const deletedThreadIds = deletedThreads.map((thread) => thread._id);
 
 		// * Extract the communityIds to update Community models respectively
@@ -79,7 +79,7 @@ export const deleteUserAction = async (userId: UserType["id"]) => {
 			{ $pull: { members: { $in: [deletedUser._id] } } }
 		);
 
-		Promise.all([
+		await Promise.all([
 			pullCommunitiesFromUsers,
 			deleteCommunitiesCreatedByUser,
 			pullUserFromCommunities,

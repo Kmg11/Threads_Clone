@@ -434,13 +434,15 @@ Enhance organizationMembership webhooks
 
 ======================================================================================
 
+Fixing deleteUserAction timeout problem
+
+======================================================================================
+
+- Delete account webhook not working in vercel timeout
+
 - Add theme to clerk dashboard and add link to production no need to redirect
 	- When invitation accepted from mail it go to wrong url [ add link to vercel ]
 	- When delete account redirect to wrong signin page [ try make it production or add link to clerk dashboard ]
-
-- Make checkUser request one time and save it global for better routing performance
-- Webhooks could be hacked secure it
-- Check delete account and go back error [ try replace ]
 
 Technologies
 	- Next.js
