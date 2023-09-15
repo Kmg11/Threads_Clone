@@ -1,18 +1,16 @@
+"use server";
+
 import { ROUTES } from "@/constants";
 import { getUserAction } from "@/server/actions/userActions/getUser.action";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 export async function checkUser() {
-	try {
-		const clerkUser = await currentUser();
-		if (!clerkUser) return redirect(ROUTES.AUTH.SIGNIN);
+	const clerkUser = await currentUser();
+	if (!clerkUser) redirect(ROUTES.AUTH.SIGNIN);
 
-		const dbUser = await getUserAction(clerkUser.id);
-		if (!dbUser?.onboarded) return redirect(ROUTES.AUTH.ONBOARDING);
+	const dbUser = await getUserAction(clerkUser.id);
+	if (!dbUser?.onboarded) redirect(ROUTES.AUTH.ONBOARDING);
 
-		return { clerkUser, dbUser };
-	} catch (error) {
-		return redirect(ROUTES.AUTH.SIGNIN);
-	}
+	return { clerkUser, dbUser };
 }

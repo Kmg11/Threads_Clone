@@ -10,6 +10,7 @@ interface UpdateUserActionParams
 	userId: string;
 	path: string;
 	insertIfNotExists?: boolean;
+	makeOnboarded?: boolean;
 }
 
 export async function updateUserAction({
@@ -20,10 +21,13 @@ export async function updateUserAction({
 	image,
 	path,
 	insertIfNotExists = true,
+	makeOnboarded = true,
 }: UpdateUserActionParams) {
-	connectToDB();
-
 	try {
+		connectToDB();
+
+		const user = await UserModel.findOne({ id: userId });
+
 		const updatedUser = await UserModel.findOneAndUpdate(
 			{ id: userId },
 			{
@@ -31,7 +35,7 @@ export async function updateUserAction({
 				name,
 				bio,
 				image,
-				onboarded: true,
+				onboarded: makeOnboarded ? true : user?.onboarded,
 			},
 			{ upsert: insertIfNotExists, new: true }
 		);

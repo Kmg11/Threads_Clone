@@ -9,6 +9,7 @@ import { updateCommunityInfoAction } from "@/server/actions/community/updateComm
 import { updateUserAction } from "@/server/actions/userActions/updateUser.action";
 import { deleteUserAction } from "@/server/actions/userActions/deleteUser.action";
 import { WebhookEvent } from "@clerk/nextjs/server";
+import { createUserAction } from "@/server/actions/userActions/createUser.action";
 
 export const POST = async (request: Request) => {
 	const WEBHOOK_SECRET = process.env.NEXT_CLERK_WEBHOOK_SECRET;
@@ -154,6 +155,32 @@ export const POST = async (request: Request) => {
 		}
 	}
 
+	// * Listen user created
+	if (event.type === "user.created") {
+		try {
+			const { id, first_name, last_name, username, image_url } = event.data;
+
+			await createUserAction({
+				userId: id,
+				name: `${first_name} ${last_name}`,
+				username: username as string,
+				image: image_url,
+			});
+
+			return NextResponse.json(
+				{ message: "User created or updated" },
+				{ status: 201 }
+			);
+		} catch (err) {
+			console.log(err);
+
+			return NextResponse.json(
+				{ message: "Internal Server Error" },
+				{ status: 500 }
+			);
+		}
+	}
+
 	// * Listen user updated
 	if (event.type === "user.updated") {
 		try {
@@ -166,6 +193,7 @@ export const POST = async (request: Request) => {
 				image: image_url,
 				path: "/",
 				insertIfNotExists: false,
+				makeOnboarded: false,
 			});
 
 			return NextResponse.json(

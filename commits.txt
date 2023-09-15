@@ -424,13 +424,23 @@ Fix add community to user multiple times | Fix checkUser problems
 
 ======================================================================================
 
-- leave organization webhook
-- Check organizationMembership.deleted
-- When invitation accepted from mail it go to wrong url [ add link to clerk ]
-- When delete account redirect to wrong signin page [ try make it production or add link to clerk dashboard ]
+Enhance organizationMembership webhooks
 
-- Return webhook secret same as deployed version
-- Remove organizationInvitation.created from clerk webhook
+- Create createUserAction
+- Listen to user created webhook
+- Enhance updateUserAction
+- Check organizationMembership.created [ Working ]
+- Check organizationMembership.deleted [ Working ]
+
+======================================================================================
+
+- Add theme to clerk dashboard and add link to production no need to redirect
+	- When invitation accepted from mail it go to wrong url [ add link to vercel ]
+	- When delete account redirect to wrong signin page [ try make it production or add link to clerk dashboard ]
+
+- Make checkUser request one time and save it global for better routing performance
+- Webhooks could be hacked secure it
+- Check delete account and go back error [ try replace ]
 
 Technologies
 	- Next.js
