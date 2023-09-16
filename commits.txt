@@ -446,9 +446,12 @@ Enhance Styles and Responsive | Create README.md file
 
 ======================================================================================
 
-- Create README.md files to explain file structure
-- Make clerk for production
+Add table of contents to README.md file
+
+======================================================================================
+
 - Make links route to vercel
+- Add portfolio link
 
 - For Testing
 	- ngrok code terminal [ngrok http --domain=still-brief-wasp.ngrok-free.app 3000]

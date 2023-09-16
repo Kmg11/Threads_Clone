@@ -7,6 +7,13 @@ Threads Clone is a full-stack social media website built using NextJS 13, TypeSc
 - [Github](https://github.com/Kmg11/Threads_Clone "Github Repo")
 - [Live](https://threads-clone-drab.vercel.app/ "Live Preview on Vercel")
 
+## Table of Contents
+- [Features](#features)
+- [Technologies](#technologies)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+- [My Links](#my-links)
+
 ## Features
 
 - **Full Authentication System**: Threads Clone offers a robust authentication system that allows users to create accounts, log in securely, and start posting threads.
