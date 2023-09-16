@@ -457,7 +457,12 @@ Enhance README.md file
 
 ======================================================================================
 
-- Add portfolio link
+Add project on my portfolio link | Fix last name null problem
+
+- Add project on my portfolio link
+- Fix last name null problem
+
+======================================================================================
 
 - For Testing
 	- ngrok code terminal [ngrok http --domain=still-brief-wasp.ngrok-free.app 3000]

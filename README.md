@@ -6,8 +6,10 @@ Threads Clone is a full-stack social media website built using NextJS 13, TypeSc
 
 - [Github](https://github.com/Kmg11/Threads_Clone "Github Repo")
 - [Live](https://threads-clone-drab.vercel.app/ "Live Preview on Vercel")
+- [Project link on my portfolio](https://kmg11.github.io/My_Official_Portfolio/project/template/threads-clone "Project on my portfolio")
 
 ## Table of Contents
+
 - [Features](#features)
 - [Technologies](#technologies)
 - [Getting Started](#getting-started)

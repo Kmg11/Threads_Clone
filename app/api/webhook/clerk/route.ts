@@ -162,7 +162,7 @@ export const POST = async (request: Request) => {
 
 			await createUserAction({
 				userId: id,
-				name: `${first_name} ${last_name}`,
+				name: `${first_name} ${last_name || ""}`,
 				username: username as string,
 				image: image_url,
 			});
@@ -188,7 +188,7 @@ export const POST = async (request: Request) => {
 
 			await updateUserAction({
 				userId: id,
-				name: `${first_name} ${last_name}`,
+				name: `${first_name} ${last_name || ""}`,
 				username: username as string,
 				image: image_url,
 				path: "/",
