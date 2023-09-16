@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Threads Clone
+
+Threads Clone is a full-stack social media website built using NextJS 13, TypeScript, NodeJS, and MongoDB. It provides a comprehensive platform for users to engage in discussions, share ideas, and connect with like-minded individuals.
+
+## Links
+
+- [Github](https://github.com/Kmg11/Threads_Clone "Github Repo")
+- [Live](https://threads-clone-drab.vercel.app/ "Live Preview on Vercel")
+
+## Features
+
+- **Full Authentication System**: Threads Clone offers a robust authentication system that allows users to create accounts, log in securely, and start posting threads.
+- **Thread Creation and Commenting**: Users can create threads on various topics and engage in discussions with other users. The platform supports infinite nested reply threads, facilitating in-depth conversations.
+- **Community Functionality**: Threads Clone enables users to create and join communities based on their interests. Discover diverse communities, connect with others, and contribute to meaningful discussions.
+- **Advanced Search Capabilities**: The platform provides powerful search functionality, allowing users to find specific communities and users within Threads Clone. Easily discover relevant content and connect with others.
+- **User Management with Clerk**: Threads Clone leverages Clerk, a powerful tool, for handling user authentication and management. Enjoy a secure and seamless user experience.
+
+## Technologies
+
+- Next.js
+- React.js
+- TypeScript
+- Node.js
+- MongoDB
+- Mongoose
+- Clerk
+- TailwindCSS
+- Shadcn
+- Css Modules
 
 ## Getting Started
 
-First, run the development server:
+To get started with Threads Clone, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Clone the repository: `git clone https://github.com/your-username/threads-clone.git`
+2. Install dependencies: `cd threads-clone && npm install`
+3. Configure environment variables: Rename `.env.local.example` to `.env.local` and update the necessary values.
+4. Start the development server: `npm run dev`
+5. Open your browser and visit `http://localhost:3000` to access Threads Clone.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Contributions to Threads Clone are welcome! If you find any bugs or have ideas for new features, feel free to open an issue or submit a pull request.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## My Links
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [My Portfolio](https://kmg11.github.io/My_Official_Portfolio/)
+- [Linkedin](https://www.linkedin.com/in/kirolos-mahfouz/)
+- [Github](https://github.com/Kmg11)

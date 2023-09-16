@@ -438,22 +438,17 @@ Fixing deleteUserAction timeout problem
 
 ======================================================================================
 
-- Delete account webhook not working in vercel timeout
+Enhance Styles and Responsive | Create README.md file
 
-- Add theme to clerk dashboard and add link to production no need to redirect
-	- When invitation accepted from mail it go to wrong url [ add link to vercel ]
-	- When delete account redirect to wrong signin page [ try make it production or add link to clerk dashboard ]
+- Increase gap between OrganizationSwitcher and UserButton
+- Enhance AccountProfileForm responsive style
+- Create README.md file
 
-Technologies
-	- Next.js
-	- TypeScript
-	- TailwindCSS
-	- Css Modules
-	- Clerk
-	- MongoDB
-	- Mongoose
-	- Node.js
-	- Shadcn
+======================================================================================
 
-- Test responsive, accessible, ceo, and performance
-- ngrok code terminal [ngrok http --domain=still-brief-wasp.ngrok-free.app 3000]
+- Create README.md files to explain file structure
+- Make clerk for production
+- Make links route to vercel
+
+- For Testing
+	- ngrok code terminal [ngrok http --domain=still-brief-wasp.ngrok-free.app 3000]
