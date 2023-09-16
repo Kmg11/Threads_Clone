@@ -450,7 +450,13 @@ Add table of contents to README.md file
 
 ======================================================================================
 
-- Make links route to vercel
+Enhance README.md file
+
+- Add github link to clone line in README.md file
+- Add react hook form and zod to technologies
+
+======================================================================================
+
 - Add portfolio link
 
 - For Testing

@@ -32,14 +32,15 @@ Threads Clone is a full-stack social media website built using NextJS 13, TypeSc
 - Mongoose
 - Clerk
 - TailwindCSS
+- React hook form
+- Zod
 - Shadcn
-- Css Modules
 
 ## Getting Started
 
 To get started with Threads Clone, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/threads-clone.git`
+1. Clone the repository: `git clone https://github.com/Kmg11/Threads_Clone.git`
 2. Install dependencies: `cd threads-clone && npm install`
 3. Configure environment variables: Rename `.env.local.example` to `.env.local` and update the necessary values.
 4. Start the development server: `npm run dev`
